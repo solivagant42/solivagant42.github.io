@@ -20,57 +20,6 @@
     /* ─── NAV subtitle ─── */
     .nav-logo span { content: "A CABINET OF CURIOSITIES"; }
 
-    /* ─── HERO ornament ─── */
-    .hero { position: relative; overflow: hidden; }
-    .hero-ornament {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none; z-index: 0;
-    }
-    .hero-ornament svg {
-      width: min(700px, 92vw); height: min(700px, 92vw);
-      animation: roseRotate 140s linear infinite;
-    }
-    @keyframes roseRotate { to { transform: rotate(360deg); } }
-    .hero-content { position: relative; z-index: 1; }
-    .hero-name    { display: none; }  /* ideas not names */
-
-    /* coordinates instead */
-    .hero-coords {
-      font-family: var(--font-mono);
-      font-size: 0.64rem; letter-spacing: 0.28em;
-      color: rgba(201,168,76,0.32); margin-bottom: 3rem;
-      opacity: 0; animation: fadeUp 0.9s ease 1s forwards;
-    }
-
-    /* ─── MARQUEE ─── */
-    .marquee-strip {
-      overflow: hidden;
-      border-top: 1px solid rgba(201,168,76,0.1);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-      background: rgba(8,6,4,0.98);
-    }
-    .marquee-row {
-      display: flex; overflow: hidden;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid rgba(201,168,76,0.05);
-    }
-    .marquee-row:last-child { border-bottom: none; }
-    .marquee-track {
-      display: flex; gap: 2.5rem; white-space: nowrap;
-      flex-shrink: 0; align-items: center;
-    }
-    .marquee-track span {
-      font-family: var(--font-mono); font-size: 0.6rem;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(201,168,76,0.4);
-    }
-    .marquee-track .mdot { color: rgba(201,168,76,0.2); font-size: 0.45rem; letter-spacing: 0; }
-    .marquee-l { animation: scrollL 38s linear infinite; }
-    .marquee-r { animation: scrollR 30s linear infinite; }
-    @keyframes scrollL { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-    @keyframes scrollR { from{transform:translateX(-50%)} to{transform:translateX(0)} }
-
     /* ─── SECTION WATERMARKS ─── */
     .section { position: relative; overflow: hidden; }
     .sec-wm {
@@ -83,23 +32,46 @@
     }
     .section-inner { position: relative; z-index: 1; }
 
-    /* Per-section atmosphere */
-    #art         { background: linear-gradient(155deg,#0d0a05 0%,#141008 60%,#0a0804 100%); }
-    #art .sec-wm { color: rgba(201,168,76,0.038); }
+    /* ─── SMOOTH GRADIENT FLOW ─────────────────────────────────────────
+       A single vertical gradient runs the full page.
+       All dark sections are transparent so the colour shifts
+       imperceptibly as you scroll — no hard edges anywhere.
+       hero → art (amber) → music (violet) → nature (green)
+            → photography (steel) → books (rust) → about (cream)
+    ─────────────────────────────────────────────────────────────── */
+    body {
+      background:
+        linear-gradient(
+          to bottom,
+          #0a0804    0%,
+          #0d0a05    8%,
+          #130f07   16%,
+          #130f07   24%,
+          #0f0b18   32%,
+          #0f0b18   42%,
+          #09110a   50%,
+          #09110a   58%,
+          #080e14   66%,
+          #080e14   75%,
+          #150a07   83%,
+          #150a07   90%,
+          #f5f0e8   95%,
+          #f5f0e8  100%
+        ) !important;
+    }
 
-    #music         { background: linear-gradient(155deg,#09080f 0%,#0f0b18 60%,#09080f 100%); }
-    #music .sec-wm { color: rgba(122,79,158,0.045); }
+    /* All dark sections transparent — gradient shows through */
+    .hero, .section { background: transparent !important; }
 
-    #nature         { background: linear-gradient(155deg,#050d07 0%,#09110a 60%,#050d07 100%); }
-    #nature .sec-wm { color: rgba(58,122,74,0.045); }
-
-    #photography         { background: linear-gradient(155deg,#05090d 0%,#080e14 60%,#05090d 100%); }
+    /* Watermark colours still themed per section */
+    #art .sec-wm         { color: rgba(201,168,76,0.04); }
+    #music .sec-wm       { color: rgba(122,79,158,0.05); }
+    #nature .sec-wm      { color: rgba(58,122,74,0.05); }
     #photography .sec-wm { color: rgba(42,106,138,0.05); }
+    #books .sec-wm       { color: rgba(138,58,42,0.05); }
 
-    #books         { background: linear-gradient(155deg,#0d0705 0%,#150a07 60%,#0d0705 100%); }
-    #books .sec-wm { color: rgba(138,58,42,0.045); }
-
-    #about { background: #f5f0e8; }
+    /* About must be solid cream to cover the gradient beneath */
+    #about { background: #f5f0e8 !important; }
 
     /* ─── SECTION RULE (replaces flat divider inside coloured sections) ─── */
     .sec-rule {
@@ -208,100 +180,16 @@
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-
-  <div class="hero-ornament" aria-hidden="true">
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="250" cy="250" r="238" fill="none" stroke="rgba(201,168,76,0.09)" stroke-width="0.5"/>
-      <circle cx="250" cy="250" r="218" fill="none" stroke="rgba(201,168,76,0.05)" stroke-width="0.4"/>
-      <circle cx="250" cy="250" r="192" fill="none" stroke="rgba(201,168,76,0.07)" stroke-width="0.4" stroke-dasharray="3 7"/>
-      <!-- Cardinal -->
-      <polygon points="250,14 255,192 250,210 245,192" fill="rgba(201,168,76,0.15)"/>
-      <polygon points="250,486 255,308 250,290 245,308" fill="rgba(201,168,76,0.15)"/>
-      <polygon points="14,250 192,255 210,250 192,245" fill="rgba(201,168,76,0.15)"/>
-      <polygon points="486,250 308,255 290,250 308,245" fill="rgba(201,168,76,0.15)"/>
-      <!-- Diagonal -->
-      <polygon points="88,88 200,200 193,210 183,202"   fill="rgba(201,168,76,0.09)"/>
-      <polygon points="412,88 300,200 307,210 317,202"  fill="rgba(201,168,76,0.09)"/>
-      <polygon points="88,412 200,300 193,290 183,298"  fill="rgba(201,168,76,0.09)"/>
-      <polygon points="412,412 300,300 307,290 317,298" fill="rgba(201,168,76,0.09)"/>
-      <!-- Secondary -->
-      <polygon points="250,58 253,198 250,212 247,198"  fill="rgba(201,168,76,0.06)"/>
-      <polygon points="250,442 253,302 250,288 247,302" fill="rgba(201,168,76,0.06)"/>
-      <polygon points="58,250 198,253 212,250 198,247"  fill="rgba(201,168,76,0.06)"/>
-      <polygon points="442,250 302,253 288,250 302,247" fill="rgba(201,168,76,0.06)"/>
-      <polygon points="132,132 214,214 208,222 200,215" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="368,132 286,214 292,222 300,215" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="132,368 214,286 208,278 200,285" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="368,368 286,286 292,278 300,285" fill="rgba(201,168,76,0.05)"/>
-      <!-- Rings -->
-      <circle cx="250" cy="250" r="128" fill="none" stroke="rgba(201,168,76,0.08)" stroke-width="0.5"/>
-      <circle cx="250" cy="250" r="60"  fill="none" stroke="rgba(201,168,76,0.12)" stroke-width="0.5"/>
-      <circle cx="250" cy="250" r="40"  fill="none" stroke="rgba(201,168,76,0.07)" stroke-width="0.4" stroke-dasharray="2 5"/>
-      <!-- Inner petals -->
-      <polygon points="250,122 254,240 250,254 246,240" fill="rgba(201,168,76,0.08)"/>
-      <polygon points="250,378 254,260 250,246 246,260" fill="rgba(201,168,76,0.08)"/>
-      <polygon points="122,250 240,254 254,250 240,246" fill="rgba(201,168,76,0.08)"/>
-      <polygon points="378,250 260,254 246,250 260,246" fill="rgba(201,168,76,0.08)"/>
-      <polygon points="163,163 228,228 223,234 217,228" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="337,163 272,228 277,234 283,228" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="163,337 228,272 223,266 217,272" fill="rgba(201,168,76,0.05)"/>
-      <polygon points="337,337 272,272 277,266 283,272" fill="rgba(201,168,76,0.05)"/>
-      <!-- Centre -->
-      <circle cx="250" cy="250" r="7"   fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.7"/>
-      <circle cx="250" cy="250" r="2.5" fill="rgba(201,168,76,0.4)"/>
-      <!-- Ticks -->
-      <g stroke="rgba(201,168,76,0.16)" stroke-width="0.5">
-        <line x1="250" y1="16" x2="250" y2="28"/><line x1="250" y1="472" x2="250" y2="484"/>
-        <line x1="16"  y1="250" x2="28"  y2="250"/><line x1="472" y1="250" x2="484" y2="250"/>
-        <line x1="82"  y1="82"  x2="91"  y2="91"/><line x1="409" y1="82"  x2="418" y2="91"/>
-        <line x1="82"  y1="418" x2="91"  y2="409"/><line x1="409" y1="418" x2="418" y2="409"/>
-      </g>
-    </svg>
-  </div>
-
   <div class="hero-content">
     <div class="hero-eyebrow">✦ &nbsp;&nbsp; A Cabinet of Curiosities &nbsp;&nbsp; ✦</div>
     <h1><em>Studiolo</em></h1>
     <p class="hero-sub">The Renaissance scholar's private room — where art, science, music, and nature coexisted without contradiction.</p>
-    <div class="hero-coords">12°58′N &nbsp;77°35′E &nbsp;·&nbsp; BENGALURU &nbsp;·&nbsp; 2026</div>
     <div class="hero-scroll">↓ &nbsp; EXPLORE &nbsp; ↓</div>
   </div>
 </section>
 
-<!-- ══════ MARQUEE ══════ -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-row">
-    <div class="marquee-track marquee-l">
-      <span>Art & Art History</span><span class="mdot">✦</span>
-      <span>Music</span><span class="mdot">✦</span>
-      <span>Natural History</span><span class="mdot">✦</span>
-      <span>Photography</span><span class="mdot">✦</span>
-      <span>Books & Literature</span><span class="mdot">✦</span>
-      <span>Art & Art History</span><span class="mdot">✦</span>
-      <span>Music</span><span class="mdot">✦</span>
-      <span>Natural History</span><span class="mdot">✦</span>
-      <span>Photography</span><span class="mdot">✦</span>
-      <span>Books & Literature</span><span class="mdot">✦</span>
-    </div>
   </div>
-  <div class="marquee-row">
-    <div class="marquee-track marquee-r">
-      <span>Bengaluru</span><span class="mdot">·</span>
-      <span>Renaissance</span><span class="mdot">·</span>
-      <span>Darwin</span><span class="mdot">·</span>
-      <span>Bach</span><span class="mdot">·</span>
-      <span>Street Photography</span><span class="mdot">·</span>
-      <span>Deep Time</span><span class="mdot">·</span>
-      <span>Leonardo</span><span class="mdot">·</span>
-      <span>Bengaluru</span><span class="mdot">·</span>
-      <span>Renaissance</span><span class="mdot">·</span>
-      <span>Darwin</span><span class="mdot">·</span>
-      <span>Bach</span><span class="mdot">·</span>
-      <span>Street Photography</span><span class="mdot">·</span>
-      <span>Deep Time</span><span class="mdot">·</span>
-      <span>Leonardo</span><span class="mdot">·</span>
     </div>
-  </div>
 </div>
 
 <!-- ══════ ART ══════ -->

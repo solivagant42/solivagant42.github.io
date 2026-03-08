@@ -32,46 +32,91 @@
     }
     .section-inner { position: relative; z-index: 1; }
 
-    /* ─── SMOOTH GRADIENT FLOW ─────────────────────────────────────────
-       A single vertical gradient runs the full page.
-       All dark sections are transparent so the colour shifts
-       imperceptibly as you scroll — no hard edges anywhere.
-       hero → art (amber) → music (violet) → nature (green)
-            → photography (steel) → books (rust) → about (cream)
-    ─────────────────────────────────────────────────────────────── */
-    body {
-      background:
-        linear-gradient(
-          to bottom,
-          #0a0804    0%,
-          #0d0a05    8%,
-          #130f07   16%,
-          #130f07   24%,
-          #0f0b18   32%,
-          #0f0b18   42%,
-          #09110a   50%,
-          #09110a   58%,
-          #080e14   66%,
-          #080e14   75%,
-          #150a07   83%,
-          #150a07   90%,
-          #f5f0e8   95%,
-          #f5f0e8  100%
-        ) !important;
+
+
+    /* ─── SECTION BACKGROUNDS WITH PERFECT BLENDING ──────────────────────
+       Each dark section's background gradient starts at the EXACT colour
+       of the section above it, so the transition is always pixel-perfect
+       at the boundary — never early, never late.
+
+       Palette (all very dark, distinct hue only):
+         about/hero  #0c0a08  warm near-black
+         art         #14100a  amber-warm dark
+         music       #0d0a16  violet dark
+         nature      #080f0a  forest dark
+         photography #070c12  steel-blue dark
+         books       #120907  rust dark
+
+       Blend zone = 120px expressed as percentage of each section.
+       But since % is of the element, 120px ≈ 6–8% for tall sections.
+       Using a fixed px value via calc is cleaner — but gradients need %.
+       So we use a generous 12% blend that still feels instant on tall sections
+       and smooth on shorter ones.
+    ─────────────────────────────────────────────────────────────────────── */
+
+    /* Hero sits on the base dark */
+    .hero { background: #0c0a08 !important; }
+
+    /* About: cream — always a deliberate contrast from hero */
+    #about { background: #f5f0e8 !important; }
+
+    /* Art: cream → amber-dark (about sits above, so blend from cream is wrong;
+       we add a dark-to-art band instead since about provides its own bg) */
+    #art {
+      background: linear-gradient(
+        to bottom,
+        #0c0a08  0%,    /* matches hero dark exactly */
+        #14100a  10%,   /* art amber settles */
+        #14100a  100%
+      ) !important;
     }
 
-    /* All dark sections transparent — gradient shows through */
-    .hero, .section { background: transparent !important; }
+    /* Music: amber → violet */
+    #music {
+      background: linear-gradient(
+        to bottom,
+        #14100a  0%,    /* art amber */
+        #0d0a16  10%,   /* music violet settles */
+        #0d0a16  100%
+      ) !important;
+    }
 
-    /* Watermark colours still themed per section */
+    /* Nature: violet → forest */
+    #nature {
+      background: linear-gradient(
+        to bottom,
+        #0d0a16  0%,    /* music violet */
+        #080f0a  10%,   /* nature forest settles */
+        #080f0a  100%
+      ) !important;
+    }
+
+    /* Photography: forest → steel-blue */
+    #photography {
+      background: linear-gradient(
+        to bottom,
+        #080f0a  0%,    /* nature forest */
+        #070c12  10%,   /* photography steel settles */
+        #070c12  100%
+      ) !important;
+    }
+
+    /* Books: steel-blue → rust */
+    #books {
+      background: linear-gradient(
+        to bottom,
+        #070c12  0%,    /* photography steel */
+        #120907  10%,   /* books rust settles */
+        #120907  100%
+      ) !important;
+    }
+
+    /* Watermark tints per section */
     #art .sec-wm         { color: rgba(201,168,76,0.04); }
     #music .sec-wm       { color: rgba(122,79,158,0.05); }
     #nature .sec-wm      { color: rgba(58,122,74,0.05); }
     #photography .sec-wm { color: rgba(42,106,138,0.05); }
     #books .sec-wm       { color: rgba(138,58,42,0.05); }
-
-    /* About must be solid cream to cover the gradient beneath */
-    #about { background: #f5f0e8 !important; }
 
     /* ─── SECTION RULE (replaces flat divider inside coloured sections) ─── */
     .sec-rule {
@@ -164,12 +209,12 @@
     <span>A CABINET OF CURIOSITIES</span>
   </div>
   <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
     <li><a href="#art">Art</a></li>
     <li><a href="#music">Music</a></li>
     <li><a href="#nature">Natural History</a></li>
     <li><a href="#photography">Photography</a></li>
     <li><a href="#books">Books</a></li>
-    <li><a href="#about">About</a></li>
   </ul>
   <div class="nav-toggle" id="navToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -191,6 +236,30 @@
   </div>
     </div>
 </div>
+
+<!-- ══════ ABOUT ══════ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About</div>
+        <h2 class="section-title reveal">The Curious<br>Mind Behind<br>the Cabinet</h2>
+        <div class="divider"></div>
+        <p class="reveal">I am Jeevan Kumar — a polymath by temperament, if not always by achievement. I believe the greatest minds in history were not specialists. Leonardo dissected bodies and painted the Mona Lisa. Darwin sailed the world and revolutionized biology. Goethe wrote poetry and studied plant morphology.</p>
+        <p class="reveal">This site is my attempt at a <em>studiolo</em> — the private study room that Renaissance scholars maintained, filled with books, instruments, specimens, artworks, and maps. A space where the boundaries between disciplines dissolved.</p>
+        <div class="pull reveal">"The noblest pleasure is the joy of understanding."<br><small style="font-size:0.7em; opacity:0.6;">— Leonardo da Vinci</small></div>
+        <p class="reveal">Here you will find essays on the history of art, notes on music theory and composers, observations from natural history, thoughts on photography, and reflections on the books that have changed how I see the world. Everything is connected. That is the premise.</p>
+      </div>
+      <div class="about-interests reveal">
+        <a href="#art" class="interest-chip"><span class="chip-num">I</span><div class="chip-body"><span class="chip-label">Art & Art History</span><span class="chip-desc">RENAISSANCE → NOW</span></div><span class="chip-arrow">→</span></a>
+        <a href="#music" class="interest-chip"><span class="chip-num">II</span><div class="chip-body"><span class="chip-label">Music</span><span class="chip-desc">CLASSICAL → JAZZ</span></div><span class="chip-arrow">→</span></a>
+        <a href="#nature" class="interest-chip"><span class="chip-num">III</span><div class="chip-body"><span class="chip-label">Natural History</span><span class="chip-desc">BIOLOGY · GEOLOGY</span></div><span class="chip-arrow">→</span></a>
+        <a href="#photography" class="interest-chip"><span class="chip-num">IV</span><div class="chip-body"><span class="chip-label">Photography</span><span class="chip-desc">LIGHT · SHADOW · TIME</span></div><span class="chip-arrow">→</span></a>
+        <a href="#books" class="interest-chip"><span class="chip-num">V</span><div class="chip-body"><span class="chip-label">Books & Literature</span><span class="chip-desc">A READING LIFE</span></div><span class="chip-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ══════ ART ══════ -->
 <section class="section" id="art">
@@ -372,40 +441,17 @@
   </div>
 </section>
 
-<!-- ══════ ABOUT (last) ══════ -->
-<section class="section" id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">About</div>
-        <h2 class="section-title reveal">The Curious<br>Mind Behind<br>the Cabinet</h2>
-        <div class="divider"></div>
-        <p class="reveal">I am Jeevan Kumar — a polymath by temperament, if not always by achievement. I believe the greatest minds in history were not specialists. Leonardo dissected bodies and painted the Mona Lisa. Darwin sailed the world and revolutionized biology. Goethe wrote poetry and studied plant morphology.</p>
-        <p class="reveal">This site is my attempt at a <em>studiolo</em> — the private study room that Renaissance scholars maintained, filled with books, instruments, specimens, artworks, and maps. A space where the boundaries between disciplines dissolved.</p>
-        <div class="pull reveal">"The noblest pleasure is the joy of understanding."<br><small style="font-size:0.7em; opacity:0.6;">— Leonardo da Vinci</small></div>
-        <p class="reveal">Here you will find essays on the history of art, notes on music theory and composers, observations from natural history, thoughts on photography, and reflections on the books that have changed how I see the world. Everything is connected. That is the premise.</p>
-      </div>
-      <div class="about-interests reveal">
-        <a href="#art" class="interest-chip"><span class="chip-num">I</span><div class="chip-body"><span class="chip-label">Art & Art History</span><span class="chip-desc">RENAISSANCE → NOW</span></div><span class="chip-arrow">→</span></a>
-        <a href="#music" class="interest-chip"><span class="chip-num">II</span><div class="chip-body"><span class="chip-label">Music</span><span class="chip-desc">CLASSICAL → JAZZ</span></div><span class="chip-arrow">→</span></a>
-        <a href="#nature" class="interest-chip"><span class="chip-num">III</span><div class="chip-body"><span class="chip-label">Natural History</span><span class="chip-desc">BIOLOGY · GEOLOGY</span></div><span class="chip-arrow">→</span></a>
-        <a href="#photography" class="interest-chip"><span class="chip-num">IV</span><div class="chip-body"><span class="chip-label">Photography</span><span class="chip-desc">LIGHT · SHADOW · TIME</span></div><span class="chip-arrow">→</span></a>
-        <a href="#books" class="interest-chip"><span class="chip-num">V</span><div class="chip-body"><span class="chip-label">Books & Literature</span><span class="chip-desc">A READING LIFE</span></div><span class="chip-arrow">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════ FOOTER ══════ -->
 <footer class="footer">
   <div class="footer-logo">Studiolo</div>
   <div class="footer-links">
+    <a href="#about">About</a>
     <a href="#art">Art</a>
     <a href="#music">Music</a>
     <a href="#nature">Natural History</a>
     <a href="#photography">Photography</a>
     <a href="#books">Books</a>
-    <a href="#about">About</a>
     <a href="https://github.com/solivagant42" target="_blank">GitHub ↗</a>
   </div>
   <div class="footer-copy">© 2026 · Built with curiosity, not frameworks</div>

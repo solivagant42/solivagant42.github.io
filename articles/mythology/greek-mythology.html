@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greek Mythology: The Complete Cosmos — Studiolo</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent:  #b5683a;
+  --accent2: #d4924a;
+  --gold:    #c9a84c;
+  --bg:      #100b07;
+  --bg2:     #150e09;
+  --cream:   #f5f0e8;
+  --text:    rgba(245,240,232,0.82);
+  --muted:   rgba(245,240,232,0.42);
+  --dim:     rgba(245,240,232,0.22);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+  font-size: 1.15rem;
+  line-height: 1.85;
+}
+
+/* ─── PROGRESS ─── */
+#progress-bar {
+  position: fixed; top: 0; left: 0; z-index: 300;
+  height: 2px; width: 0%;
+  background: linear-gradient(90deg,
+    rgba(181,104,58,0.1), var(--accent), var(--accent2), var(--accent), rgba(181,104,58,0.1));
+  transition: width 0.08s linear;
+  pointer-events: none;
+}
+
+/* ─── NAV ─── */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 3rem;
+  background: rgba(16,11,7,0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(181,104,58,0.12);
+}
+.nav-back {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.2em; color: var(--muted); text-decoration: none; transition: color 0.2s;
+}
+.nav-back:hover { color: var(--accent); }
+.nav-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem;
+  font-style: italic; color: var(--accent); text-decoration: none;
+}
+.nav-genre {
+  font-family: 'Space Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.2em; color: var(--accent); opacity: 0.6;
+  text-decoration: none; transition: opacity 0.2s; text-transform: uppercase;
+}
+.nav-genre:hover { opacity: 1; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 10rem 3rem 6rem; position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 60%, rgba(181,104,58,0.09) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 35% at 80% 25%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    linear-gradient(158deg, #1e0e06 0%, #100b07 50%, #0a0704 100%);
+}
+
+/* Greek key pattern overlay */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(181,104,58,0.025) 0px, rgba(181,104,58,0.025) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(0deg, rgba(181,104,58,0.025) 0px, rgba(181,104,58,0.025) 1px, transparent 1px, transparent 60px);
+  pointer-events: none;
+}
+
+.hero-amphora {
+  position: absolute; right: 4%; top: 50%; transform: translateY(-50%);
+  opacity: 0.07; pointer-events: none;
+}
+
+.hero-bg-text {
+  position: absolute; bottom: -3rem; right: -2rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(14rem, 32vw, 30rem);
+  font-weight: 900; font-style: italic;
+  color: rgba(181,104,58,0.04);
+  line-height: 1; pointer-events: none; user-select: none;
+  letter-spacing: -0.02em;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 840px; }
+.hero-genre {
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  letter-spacing: 0.32em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp 0.8s ease 0.2s forwards;
+}
+.hero-rule {
+  width: 60px; height: 1px; background: var(--accent); opacity: 0.45; margin-bottom: 2rem;
+  opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  font-weight: 900; line-height: 1.0; color: var(--cream); margin-bottom: 1.6rem;
+  opacity: 0; animation: fadeUp 0.8s ease 0.4s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--accent2); }
+.hero h1 .greek { color: rgba(201,168,76,0.7); font-size: 0.55em; display: block; letter-spacing: 0.1em; }
+.hero-sub {
+  font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--muted);
+  line-height: 1.8; max-width: 660px; margin-bottom: 2.5rem;
+  opacity: 0; animation: fadeUp 0.8s ease 0.6s forwards;
+}
+.hero-meta {
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp 0.8s ease 0.8s forwards;
+}
+.meta-item {
+  font-family: 'Space Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.16em; color: rgba(181,104,58,0.4); text-transform: uppercase;
+}
+.meta-item span { display: block; color: var(--accent); font-size: 0.62rem; margin-top: 0.2rem; }
+
+/* ─── CONTENTS ─── */
+.toc-bar {
+  background: rgba(181,104,58,0.05);
+  border-bottom: 1px solid rgba(181,104,58,0.1);
+  padding: 1.2rem 3rem;
+  display: flex; align-items: center; gap: 2.5rem; flex-wrap: wrap;
+  position: sticky; top: 52px; z-index: 100;
+  backdrop-filter: blur(10px);
+}
+.toc-label {
+  font-family: 'Space Mono', monospace; font-size: 0.55rem;
+  letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase;
+  flex-shrink: 0;
+}
+.toc-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.toc-links a {
+  font-family: 'Space Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.12em; color: var(--muted); text-decoration: none;
+  text-transform: uppercase; transition: color 0.2s;
+}
+.toc-links a:hover { color: var(--accent); }
+
+/* ─── BODY PROSE ─── */
+.article-body { max-width: 820px; margin: 0 auto; padding: 5rem 2rem 3rem; }
+p { margin-bottom: 1.6rem; color: var(--text); }
+strong { color: var(--cream); }
+em { color: var(--accent2); font-style: italic; }
+
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 900; color: var(--cream);
+  margin: 4rem 0 0.5rem; line-height: 1.2;
+}
+h2 em { color: var(--accent); font-style: italic; }
+h2 .h2-num {
+  display: block; font-family: 'Space Mono', monospace;
+  font-size: 0.55rem; letter-spacing: 0.25em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem; font-style: italic;
+  color: var(--accent2); margin: 2.5rem 0 0.8rem;
+}
+
+.pull {
+  border-left: 2px solid var(--accent);
+  padding: 0.8rem 0 0.8rem 2rem; margin: 2.8rem 0;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  font-style: italic; color: var(--cream); line-height: 1.5;
+}
+.pull cite {
+  display: block; margin-top: 0.6rem;
+  font-family: 'Space Mono', monospace; font-size: 0.58rem;
+  font-style: normal; letter-spacing: 0.12em; color: var(--muted);
+}
+
+.rule {
+  display: flex; align-items: center; gap: 1rem; margin: 3.5rem 0; color: var(--accent);
+}
+.rule-line { flex:1; height:1px; background:currentColor; opacity:0.12; }
+.rule-gem  { width:5px; height:5px; transform:rotate(45deg); background:currentColor; opacity:0.45; flex-shrink:0; }
+
+/* ─── FULL-WIDTH PANELS ─── */
+.panel {
+  background: var(--bg2);
+  border-top: 1px solid rgba(181,104,58,0.12);
+  border-bottom: 1px solid rgba(181,104,58,0.12);
+  padding: 4rem 2rem; margin: 4rem 0;
+}
+.panel-inner { max-width: 1100px; margin: 0 auto; }
+.panel-label {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.28em; color: var(--accent); text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.panel-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-style: italic; color: var(--cream); margin-bottom: 0.5rem; line-height: 1.2;
+}
+.panel-subtitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  color: var(--muted); margin-bottom: 2.5rem; max-width: 640px;
+}
+
+/* ─── CREATION TIMELINE ─── */
+.creation-timeline {
+  position: relative; overflow-x: auto; padding: 1rem 0 2rem;
+}
+.timeline-track {
+  display: flex; align-items: flex-start;
+  gap: 0; min-width: max-content;
+  padding: 0 1rem;
+}
+.timeline-step {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+.t-connector {
+  display: flex; align-items: center; margin-top: 2.8rem;
+}
+.t-line { width: 40px; height: 1px; background: rgba(181,104,58,0.3); }
+.t-arrow { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: rgba(181,104,58,0.4); margin-left: -2px; }
+.t-node {
+  width: 5.5rem; text-align: center;
+}
+.t-circle {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1.5px solid rgba(181,104,58,0.4);
+  background: rgba(181,104,58,0.06);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.6rem;
+  font-size: 1.4rem;
+}
+.t-circle.primordial { border-color: rgba(201,168,76,0.6); background: rgba(201,168,76,0.06); }
+.t-circle.titan { border-color: rgba(181,104,58,0.5); background: rgba(181,104,58,0.07); }
+.t-circle.olympian { border-color: rgba(100,140,181,0.5); background: rgba(100,140,181,0.06); }
+.t-name {
+  font-family: 'Playfair Display', serif; font-size: 0.75rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.2rem; line-height: 1.2;
+}
+.t-role {
+  font-family: 'Space Mono', monospace; font-size: 0.44rem;
+  letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase;
+}
+
+/* ─── THEOGONY TREE ─── */
+.theogony-wrap { overflow-x: auto; padding: 1rem; }
+.theogony-tree {
+  display: flex; flex-direction: column; align-items: center;
+  min-width: 900px; gap: 0;
+}
+.tree-row { display: flex; align-items: center; justify-content: center; gap: 0; width: 100%; }
+.tree-node {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  flex-shrink: 0;
+}
+.tn-box {
+  padding: 0.55rem 1rem;
+  border: 1px solid rgba(181,104,58,0.3);
+  background: rgba(181,104,58,0.05);
+  font-family: 'Playfair Display', serif; font-size: 0.85rem;
+  font-style: italic; color: var(--cream);
+  text-align: center; white-space: nowrap;
+  min-width: 90px; position: relative;
+}
+.tn-box.primordial { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.07); color: #e8d090; }
+.tn-box.titan { border-color: rgba(181,104,58,0.45); background: rgba(181,104,58,0.08); }
+.tn-box.olympian { border-color: rgba(100,140,181,0.4); background: rgba(100,140,181,0.07); color: #a8c4e0; }
+.tn-box.nymph { border-color: rgba(80,160,100,0.35); background: rgba(80,160,100,0.06); color: #a8d0b0; font-size: 0.78rem; }
+.tn-sub {
+  font-family: 'Space Mono', monospace; font-size: 0.38rem;
+  letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 0.2rem;
+}
+.tn-vert-down { width: 1px; height: 22px; background: rgba(181,104,58,0.25); }
+.tn-vert-up { width: 1px; height: 22px; background: rgba(181,104,58,0.25); }
+.tn-horiz { height: 1px; background: rgba(181,104,58,0.2); flex: 1; }
+.tn-plus {
+  font-family: 'Space Mono', monospace; font-size: 0.65rem;
+  color: rgba(181,104,58,0.4); padding: 0 0.4rem;
+}
+.tree-union { display: flex; align-items: center; gap: 0; }
+.tree-children {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 0.8rem; position: relative;
+}
+.tree-children::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 1px; background: rgba(181,104,58,0.2);
+}
+
+/* ─── OLYMPIANS GRID ─── */
+.olympians-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  border: 1px solid rgba(181,104,58,0.15);
+  background: rgba(181,104,58,0.08);
+}
+.olympian-cell {
+  background: var(--bg2); padding: 1.5rem 1.2rem;
+  border: 1px solid transparent;
+  transition: border-color 0.25s, background 0.25s;
+  position: relative; overflow: hidden;
+}
+.olympian-cell::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--cell-color, var(--accent));
+  opacity: 0.4;
+}
+.olympian-cell:hover { background: rgba(181,104,58,0.04); border-color: rgba(181,104,58,0.2); }
+.ol-symbol { font-size: 2rem; margin-bottom: 0.6rem; line-height: 1; }
+.ol-name {
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.15rem;
+}
+.ol-greek {
+  font-family: 'Space Mono', monospace; font-size: 0.48rem;
+  letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.ol-domain {
+  font-family: 'Space Mono', monospace; font-size: 0.5rem;
+  letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.ol-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
+
+/* ─── AGES OF MAN ─── */
+.ages-track {
+  display: flex; flex-direction: column; gap: 0; position: relative;
+  padding-left: 3rem;
+}
+.ages-track::before {
+  content: '';
+  position: absolute; left: 0.85rem; top: 1.5rem; bottom: 1.5rem;
+  width: 1px; background: rgba(181,104,58,0.2);
+}
+.age-row {
+  display: flex; gap: 2rem; align-items: flex-start;
+  padding: 1.5rem 0; border-bottom: 1px solid rgba(181,104,58,0.06);
+  position: relative;
+}
+.age-row:last-child { border-bottom: none; }
+.age-dot {
+  position: absolute; left: -2.25rem; top: 2rem;
+  width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid var(--age-color, var(--accent));
+  background: rgba(16,11,7,0.9);
+  display: flex; align-items: center; justify-content: center;
+}
+.age-dot::after {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--age-color, var(--accent)); opacity: 0.7;
+}
+.age-label {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--age-color, var(--accent)); flex-shrink: 0; min-width: 120px; margin-top: 0.2rem;
+}
+.age-meta {
+  font-family: 'Space Mono', monospace; font-size: 0.5rem;
+  letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 0.15rem;
+}
+.age-content { flex: 1; }
+.age-title {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.4rem;
+}
+.age-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; margin: 0; }
+.age-qualities { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.7rem; }
+.aq {
+  font-family: 'Space Mono', monospace; font-size: 0.45rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.2rem 0.6rem; border: 1px solid;
+  border-color: var(--age-color, rgba(181,104,58,0.3));
+  color: var(--age-color, var(--muted));
+  opacity: 0.7;
+}
+
+/* ─── UNDERWORLD MAP ─── */
+.underworld-map {
+  width: 100%; max-width: 820px; margin: 0 auto;
+  background: linear-gradient(180deg, #08060e 0%, #040208 100%);
+  border: 1px solid rgba(181,104,58,0.15);
+  padding: 2rem; border-radius: 2px;
+  position: relative; overflow: hidden;
+}
+.uw-label-main {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.22em; color: rgba(181,104,58,0.5); text-transform: uppercase;
+  text-align: center; margin-bottom: 1.5rem;
+}
+.uw-rivers {
+  display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;
+}
+.uw-river-row { display: flex; align-items: center; gap: 0.8rem; }
+.river-line {
+  flex: 1; height: 2px; position: relative; overflow: hidden;
+  background: linear-gradient(90deg, transparent, var(--river-col, rgba(80,120,180,0.3)), transparent);
+}
+.river-line::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(255,255,255,0.05) 8px, rgba(255,255,255,0.05) 10px);
+}
+.river-name {
+  font-family: 'Playfair Display', serif; font-size: 0.75rem;
+  font-style: italic; color: var(--river-col, rgba(80,120,180,0.8)); width: 90px; text-align: center;
+}
+.river-meaning {
+  font-family: 'Space Mono', monospace; font-size: 0.42rem;
+  letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; width: 100px;
+}
+.uw-zones {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+  background: rgba(181,104,58,0.08);
+  border: 1px solid rgba(181,104,58,0.12);
+  margin-bottom: 1.5rem;
+}
+.uw-zone {
+  padding: 1.2rem; background: var(--bg);
+  position: relative;
+}
+.uw-zone-name {
+  font-family: 'Playfair Display', serif; font-size: 1rem;
+  font-style: italic; color: var(--zone-col, var(--cream));
+  margin-bottom: 0.3rem;
+}
+.uw-zone-greek {
+  font-family: 'Space Mono', monospace; font-size: 0.45rem;
+  letter-spacing: 0.14em; color: var(--zone-col, var(--muted));
+  opacity: 0.6; text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.uw-zone-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; margin: 0; }
+.uw-deep {
+  padding: 1.2rem; background: rgba(30,0,0,0.6);
+  border: 1px solid rgba(200,40,40,0.15); text-align: center;
+}
+.uw-deep-name {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-style: italic; color: rgba(200,80,60,0.9); margin-bottom: 0.3rem;
+}
+.uw-deep-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+/* ─── TROJAN WAR TIMELINE ─── */
+.trojan-timeline { position: relative; }
+.tj-event {
+  display: flex; gap: 2rem; align-items: flex-start;
+  padding: 1.5rem 0; position: relative;
+}
+.tj-event + .tj-event { border-top: 1px solid rgba(181,104,58,0.07); }
+.tj-num {
+  font-family: 'Playfair Display', serif; font-size: 2rem;
+  font-style: italic; color: rgba(181,104,58,0.18); line-height: 1;
+  min-width: 3rem; text-align: right; flex-shrink: 0; margin-top: -0.2rem;
+}
+.tj-content { flex: 1; }
+.tj-tag {
+  font-family: 'Space Mono', monospace; font-size: 0.5rem;
+  letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.3rem;
+}
+.tj-title {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.4rem;
+}
+.tj-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+/* ─── HERO CYCLES ─── */
+.hero-cycles-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.hero-cycle-card {
+  border: 1px solid rgba(181,104,58,0.15); padding: 1.8rem;
+  background: rgba(181,104,58,0.03);
+  position: relative; overflow: hidden;
+  transition: border-color 0.25s, background 0.25s;
+}
+.hero-cycle-card:hover { border-color: rgba(181,104,58,0.3); background: rgba(181,104,58,0.06); }
+.hero-cycle-card::after {
+  content: var(--hero-num);
+  position: absolute; bottom: -1.5rem; right: -0.5rem;
+  font-family: 'Playfair Display', serif; font-size: 8rem;
+  font-weight: 900; font-style: italic;
+  color: rgba(181,104,58,0.04); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.hc-tag {
+  font-family: 'Space Mono', monospace; font-size: 0.5rem;
+  letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.7rem;
+}
+.hc-name {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.3rem;
+}
+.hc-subtitle { font-family: 'Space Mono', monospace; font-size: 0.5rem; letter-spacing: 0.1em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.9rem; }
+.hc-steps { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1rem; }
+.hc-step {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  font-size: 0.82rem; color: var(--muted); line-height: 1.45;
+}
+.hc-step-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(181,104,58,0.4); flex-shrink: 0; margin-top: 0.45rem;
+}
+.hc-step strong { color: rgba(245,240,232,0.7); font-weight: 400; }
+.hc-moral {
+  font-family: 'Playfair Display', serif; font-size: 0.88rem;
+  font-style: italic; color: rgba(181,104,58,0.75);
+  border-top: 1px solid rgba(181,104,58,0.1); padding-top: 0.8rem; margin-top: 0.8rem;
+  line-height: 1.5;
+}
+
+/* ─── CALLOUT ─── */
+.callout {
+  background: rgba(181,104,58,0.04); border: 1px solid rgba(181,104,58,0.12);
+  padding: 1.8rem 2rem; margin: 2.5rem 0;
+}
+.callout-label {
+  font-family: 'Space Mono', monospace; font-size: 0.58rem;
+  letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem;
+}
+.callout p { margin-bottom: 0; }
+
+/* ─── COSMOS DIAGRAM ─── */
+.cosmos-diagram {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  max-width: 600px; margin: 0 auto;
+}
+.cosmos-layer {
+  width: 100%; padding: 0.9rem 1.5rem;
+  display: flex; align-items: center; gap: 1.2rem;
+  border-left: 2px solid var(--layer-col, rgba(181,104,58,0.3));
+  background: var(--layer-bg, rgba(181,104,58,0.03));
+  margin-bottom: 1px;
+}
+.cosmos-layer-name {
+  font-family: 'Playfair Display', serif; font-size: 0.95rem;
+  font-style: italic; color: var(--layer-col, var(--cream)); min-width: 110px;
+}
+.cosmos-layer-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+/* ─── MORE SECTION ─── */
+.more-section {
+  background: var(--bg2); border-top: 1px solid rgba(181,104,58,0.1); padding: 5rem 2rem;
+}
+.more-inner { max-width: 900px; margin: 0 auto; }
+.more-label {
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.25em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.6rem;
+}
+.more-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3vw, 2rem); font-style: italic; color: var(--cream); margin-bottom: 3rem;
+}
+.more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; }
+.more-card {
+  border: 1px solid rgba(181,104,58,0.12); padding: 1.5rem;
+  text-decoration: none; display: block;
+  transition: border-color 0.25s, background 0.25s;
+}
+.more-card:hover { border-color: rgba(181,104,58,0.3); background: rgba(181,104,58,0.03); }
+.more-card-tag {
+  font-family: 'Space Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.18em; color: var(--accent); opacity: 0.6;
+  text-transform: uppercase; margin-bottom: 0.7rem;
+}
+.more-card h4 {
+  font-family: 'Playfair Display', serif; font-size: 1.05rem;
+  font-style: italic; color: var(--cream); margin-bottom: 0.5rem; line-height: 1.3;
+}
+.more-card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0; line-height: 1.6; }
+.soon {
+  display: inline-block; margin-top: 0.8rem;
+  font-family: 'Space Mono', monospace; font-size: 0.52rem;
+  letter-spacing: 0.14em; color: var(--accent); opacity: 0.4; text-transform: uppercase;
+}
+.arrow-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Space Mono', monospace; font-size: 0.6rem;
+  letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase;
+  text-decoration: none; transition: gap 0.2s; margin-top: 2rem;
+}
+.arrow-link:hover { gap: 0.9rem; }
+
+/* ─── FOOTER ─── */
+.article-footer {
+  background: #080503; border-top: 1px solid rgba(181,104,58,0.07);
+  padding: 2.5rem; text-align: center;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem;
+  font-style: italic; color: var(--gold); text-decoration: none;
+  display: inline-block; margin-bottom: 0.5rem;
+}
+.footer-sub {
+  font-family: 'Space Mono', monospace; font-size: 0.55rem;
+  letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase;
+}
+
+/* ─── GREEK KEY BORDER DECORATION ─── */
+.greek-key {
+  height: 8px; margin: 2rem 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='8'%3E%3Cpath d='M0,8 L0,0 L8,0 L8,6 L6,6 L6,2 L2,2 L2,8Z M10,0 L10,4 L14,4 L14,0 L16,0 L16,4 L20,4 L20,8 L8,8 L8,6 L18,6 L18,2 L10,2Z' fill='rgba(181,104,58,0.18)'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .top-nav { padding: 1rem 1.5rem; }
+  .hero { padding: 8rem 1.5rem 4rem; }
+  .article-body { padding: 3rem 1.5rem 3rem; }
+  .panel { padding: 2.5rem 1.5rem; }
+  .toc-bar { padding: 1rem 1.5rem; top: 48px; }
+  .olympians-grid { grid-template-columns: repeat(2, 1fr); }
+  .uw-zones { grid-template-columns: 1fr; }
+  .hero-cycles-grid { grid-template-columns: 1fr; }
+  .more-section { padding: 3.5rem 1.5rem; }
+  .tj-event { gap: 1rem; }
+  .tj-num { font-size: 1.5rem; min-width: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../../index.html" class="nav-back">← Back to Studiolo</a>
+  <a href="../../index.html" class="nav-brand">Studiolo</a>
+  <a href="../../index.html#mythology" class="nav-genre">Mythology</a>
+</nav>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <span class="toc-label">Contents</span>
+  <div class="toc-links">
+    <a href="#creation">Creation</a>
+    <a href="#theogony">Theogony</a>
+    <a href="#cosmos">Cosmos</a>
+    <a href="#olympians">Olympians</a>
+    <a href="#ages">Ages of Man</a>
+    <a href="#underworld">Underworld</a>
+    <a href="#heroes">Heroes</a>
+    <a href="#troy">Troy</a>
+    <a href="#legacy">Legacy</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">Μῦθος</div>
+
+  <!-- Amphora SVG decoration -->
+  <svg class="hero-amphora" width="280" height="500" viewBox="0 0 280 500" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="amphoraGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="rgba(181,104,58,0.3)"/>
+        <stop offset="50%" stop-color="rgba(181,104,58,0.8)"/>
+        <stop offset="100%" stop-color="rgba(181,104,58,0.2)"/>
+      </linearGradient>
+    </defs>
+    <!-- Amphora body -->
+    <path d="M100,60 Q60,80 50,160 Q40,240 50,310 Q60,370 70,400 L80,420 L200,420 L210,400 Q220,370 230,310 Q240,240 230,160 Q220,80 180,60 Z" fill="none" stroke="url(#amphoraGrad)" stroke-width="1.5"/>
+    <!-- Neck -->
+    <path d="M100,60 Q115,40 120,20 M180,60 Q165,40 160,20" fill="none" stroke="rgba(181,104,58,0.4)" stroke-width="1.2"/>
+    <!-- Rim -->
+    <ellipse cx="140" cy="18" rx="22" ry="6" fill="none" stroke="rgba(181,104,58,0.4)" stroke-width="1"/>
+    <!-- Handles -->
+    <path d="M96,150 Q60,150 62,200 Q60,250 96,250" fill="none" stroke="rgba(181,104,58,0.35)" stroke-width="1.2"/>
+    <path d="M184,150 Q220,150 218,200 Q220,250 184,250" fill="none" stroke="rgba(181,104,58,0.35)" stroke-width="1.2"/>
+    <!-- Decorative band -->
+    <line x1="70" y1="110" x2="210" y2="110" stroke="rgba(181,104,58,0.25)" stroke-width="0.8"/>
+    <line x1="58" y1="330" x2="222" y2="330" stroke="rgba(181,104,58,0.25)" stroke-width="0.8"/>
+    <!-- Greek key pattern on band -->
+    <g transform="translate(72, 98)" opacity="0.4">
+      <rect x="0" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="10" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="20" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="30" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="40" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="50" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="60" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="70" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="80" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="90" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="100" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="110" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+      <rect x="120" y="0" width="6" height="6" fill="none" stroke="rgba(181,104,58,0.6)" stroke-width="0.8"/>
+    </g>
+    <!-- Figures on pottery (stylized) -->
+    <g opacity="0.35" transform="translate(90, 140)">
+      <!-- Running figure 1 -->
+      <circle cx="20" cy="30" r="8" fill="none" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="20" y1="38" x2="20" y2="60" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="20" y1="45" x2="10" y2="55" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="20" y1="45" x2="30" y2="52" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="20" y1="60" x2="12" y2="72" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="20" y1="60" x2="28" y2="72" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <!-- Running figure 2 -->
+      <circle cx="70" cy="30" r="8" fill="none" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="70" y1="38" x2="70" y2="60" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="70" y1="45" x2="58" y2="52" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="70" y1="45" x2="80" y2="55" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="70" y1="60" x2="60" y2="72" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+      <line x1="70" y1="60" x2="78" y2="72" stroke="rgba(181,104,58,0.8)" stroke-width="1"/>
+    </g>
+    <!-- Base -->
+    <path d="M80,420 Q100,440 140,445 Q180,440 200,420" fill="none" stroke="rgba(181,104,58,0.4)" stroke-width="1.2"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-genre">Mythology · Comprehensive Guide</div>
+    <div class="hero-rule"></div>
+    <h1>
+      <span class="greek">ΕΛΛΗΝΙΚΉ ΜΥΘΟΛΟΓΊΑ</span>
+      The World of <em>Greek Myth</em>
+    </h1>
+    <p class="hero-sub">From the void of Chaos to the fall of Troy — a complete visual guide to the gods, cosmology, and story cycles that shaped Western civilisation for three thousand years.</p>
+    <div class="hero-meta">
+      <div class="meta-item">Written by <span>Jeevan Kumar</span></div>
+      <div class="meta-item">Reading time <span>~25 minutes</span></div>
+      <div class="meta-item">Diagrams <span>8 schematics</span></div>
+      <div class="meta-item">Covers <span>Creation → Troy</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ ARTICLE BODY ══════ -->
+<article class="article-body">
+
+  <p>Greek mythology is not a single book, a unified religion, or a consistent system. It is a vast, living, centuries-long accumulation of stories — told by poets, painted on pottery, performed in theatres, carved into temple friezes — that served simultaneously as theology, history, science, and moral philosophy. The Greeks used myth to explain everything: why the seasons change, why we suffer, why we die, why the powerful abuse the weak, and occasionally, why the weak outwit the powerful.</p>
+
+  <p>What makes Greek mythology inexhaustible is its psychological depth. The gods are not perfect beings who demand worship. They are <strong>amplified humans</strong> — consumed by jealousy, lust, pride, grief, and love in proportions we recognise but could not survive. Zeus is both the guarantor of justice and an incorrigible adulterer. Hera is both the protector of marriage and a vindictive schemer. This moral complexity is the tradition's greatest gift: it refuses the comfort of simple virtue.</p>
+
+  <div class="pull">
+    "The Greeks said something about the human situation that is permanently, universally true. That is why their myths are still alive — not as curiosities from the ancient world, but as mirrors."
+    <cite>— Robert Graves, The Greek Myths, 1955</cite>
+  </div>
+
+</article>
+
+<!-- ══════ PANEL 1: CREATION ══════ -->
+<div class="panel" id="creation">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter I · Cosmogony</div>
+    <h2 class="panel-title">From Chaos to Cosmos</h2>
+    <p class="panel-subtitle">Before the gods, before the earth, before time itself — there was only Chaos. The Greek creation myth traces the emergence of ordered reality from primordial void.</p>
+
+    <div class="creation-timeline">
+      <div class="timeline-track">
+
+        <!-- Chaos -->
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle primordial">✧</div>
+            <div class="t-name">Chaos</div>
+            <div class="t-role">The Void</div>
+          </div>
+        </div>
+
+        <div class="t-connector"><div class="t-line"></div><div class="t-arrow">→</div></div>
+
+        <!-- Gaia + Tartarus + Eros + Nyx + Erebus -->
+        <div class="timeline-step">
+          <div class="t-node" style="width:8rem">
+            <div class="t-circle primordial" style="width:64px;height:64px;font-size:1.6rem">⊕</div>
+            <div class="t-name">Gaia</div>
+            <div class="t-role">Earth Mother</div>
+          </div>
+        </div>
+        <div class="t-connector"><div class="t-line"></div></div>
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle primordial">🌑</div>
+            <div class="t-name">Tartarus</div>
+            <div class="t-role">The Abyss</div>
+          </div>
+        </div>
+        <div class="t-connector"><div class="t-line"></div></div>
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle primordial">♡</div>
+            <div class="t-name">Eros</div>
+            <div class="t-role">Desire</div>
+          </div>
+        </div>
+        <div class="t-connector"><div class="t-line"></div></div>
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle primordial">🌙</div>
+            <div class="t-name">Nyx</div>
+            <div class="t-role">Night</div>
+          </div>
+        </div>
+        <div class="t-connector"><div class="t-line"></div></div>
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle primordial">◉</div>
+            <div class="t-name">Erebus</div>
+            <div class="t-role">Darkness</div>
+          </div>
+        </div>
+
+        <div class="t-connector"><div class="t-line"></div><div class="t-arrow">→</div></div>
+
+        <!-- Uranus -->
+        <div class="timeline-step">
+          <div class="t-node">
+            <div class="t-circle titan" style="font-size:1.3rem">☽</div>
+            <div class="t-name">Uranus</div>
+            <div class="t-role">Sky · Gaia's son &amp; husband</div>
+          </div>
+        </div>
+
+        <div class="t-connector"><div class="t-line"></div><div class="t-arrow">→</div></div>
+
+        <!-- Titans -->
+        <div class="timeline-step">
+          <div class="t-node" style="width:7rem">
+            <div class="t-circle titan" style="font-size:1.2rem">⚡</div>
+            <div class="t-name">The Titans</div>
+            <div class="t-role">12 Elder Gods</div>
+          </div>
+        </div>
+
+        <div class="t-connector"><div class="t-line"></div><div class="t-arrow">→</div></div>
+
+        <!-- Kronos + Rhea -->
+        <div class="timeline-step">
+          <div class="t-node" style="width:7.5rem">
+            <div class="t-circle titan" style="font-size:1rem; padding:0.2rem">⏳</div>
+            <div class="t-name">Kronos + Rhea</div>
+            <div class="t-role">King &amp; Queen Titan</div>
+          </div>
+        </div>
+
+        <div class="t-connector"><div class="t-line"></div><div class="t-arrow">→</div></div>
+
+        <!-- Olympians -->
+        <div class="timeline-step">
+          <div class="t-node" style="width:7rem">
+            <div class="t-circle olympian" style="font-size:1.5rem">🏛</div>
+            <div class="t-name">Olympians</div>
+            <div class="t-role">12 Ruling Gods</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <div class="callout-label" style="font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--accent);text-transform:uppercase;margin-bottom:0.8rem;">How Kronos Lost Power</div>
+      <p style="font-size:0.92rem; color:var(--muted); max-width:700px; line-height:1.7;">Kronos, warned by prophecy that his child would overthrow him, swallowed each newborn. Rhea substituted a stone wrapped in swaddling for Zeus, who grew up in Crete. Returned, Zeus forced Kronos to disgorge his siblings — Hestia, Demeter, Hera, Hades, Poseidon — and waged the <strong style="color:rgba(245,240,232,0.7)">Titanomachy</strong>: a ten-year war ending with the Titans imprisoned in Tartarus and Zeus ruling from Olympus.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL 2: THEOGONY TREE ══════ -->
+<div class="panel" id="theogony">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter II · Theogony</div>
+    <h2 class="panel-title">The Divine Family Tree</h2>
+    <p class="panel-subtitle">Hesiod's <em>Theogony</em> (c. 700 BCE) — the genealogy of the gods, from primordial void to Olympian rule. A simplified schematic of divine descent.</p>
+
+    <div class="theogony-wrap">
+      <div style="min-width:860px; padding:1rem 0;">
+
+        <!-- ROW 1: CHAOS -->
+        <div style="display:flex;justify-content:center;margin-bottom:0;">
+          <div style="display:flex;flex-direction:column;align-items:center;">
+            <div class="tn-box primordial" style="font-size:1rem;padding:0.65rem 1.5rem;">Χάος · Chaos</div>
+            <div style="font-family:'Space Mono',monospace;font-size:0.4rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;margin-top:0.25rem;">The Void · The Beginning</div>
+            <div class="tn-vert-down"></div>
+          </div>
+        </div>
+
+        <!-- ROW 2: Primordials from Chaos -->
+        <div style="display:flex;justify-content:center;align-items:flex-start;gap:0;position:relative;margin-bottom:0;">
+          <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:78%;height:1px;background:rgba(201,168,76,0.15);"></div>
+
+          <div style="display:flex;gap:3rem;padding-top:1px;margin-top:0;">
+            <!-- Gaia -->
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="tn-vert-up"></div>
+              <div class="tn-box primordial">Γαῖα · Gaia</div>
+              <div class="tn-sub">Earth Mother</div>
+              <div class="tn-vert-down"></div>
+            </div>
+            <!-- Tartarus -->
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="tn-vert-up"></div>
+              <div class="tn-box primordial">Τάρταρος</div>
+              <div class="tn-sub">The Abyss</div>
+            </div>
+            <!-- Eros -->
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="tn-vert-up"></div>
+              <div class="tn-box primordial">Ἔρως · Eros</div>
+              <div class="tn-sub">Desire / Procreation</div>
+            </div>
+            <!-- Nyx -->
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="tn-vert-up"></div>
+              <div class="tn-box primordial">Νύξ · Nyx</div>
+              <div class="tn-sub">Night</div>
+              <div class="tn-vert-down"></div>
+            </div>
+            <!-- Erebus -->
+            <div style="display:flex;flex-direction:column;align-items:center;">
+              <div class="tn-vert-up"></div>
+              <div class="tn-box primordial">Ἔρεβος · Erebus</div>
+              <div class="tn-sub">Darkness</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 3: from Gaia + Nyx -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:0 6rem;gap:2rem;margin-top:0;">
+          <!-- Gaia branch -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+            <div style="display:flex;gap:2.5rem;align-items:flex-start;position:relative;">
+              <div style="position:absolute;top:0;left:0;right:0;height:1px;background:rgba(181,104,58,0.2);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box titan">Οὐρανός · Uranus</div>
+                <div class="tn-sub">Sky · Son &amp; Husband of Gaia</div>
+                <div class="tn-vert-down"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box nymph">Πόντος · Pontus</div>
+                <div class="tn-sub">The Sea</div>
+              </div>
+            </div>
+            <!-- Titans -->
+            <div style="display:flex;gap:1.2rem;align-items:flex-start;position:relative;margin-top:0;">
+              <div style="position:absolute;top:0;left:0;right:0;height:1px;background:rgba(181,104,58,0.15);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box titan" style="font-size:0.78rem;">Κρόνος · Kronos</div>
+                <div class="tn-sub">Time · King Titan</div>
+                <div class="tn-vert-down"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box titan" style="font-size:0.78rem;">Ῥέα · Rhea</div>
+                <div class="tn-sub">Queen Titan</div>
+                <div class="tn-vert-down"></div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box titan" style="font-size:0.78rem;">Ὠκεανός</div>
+                <div class="tn-sub">Ocean Titan</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box titan" style="font-size:0.78rem;">Prometheus</div>
+                <div class="tn-sub">Titan of Forethought</div>
+              </div>
+            </div>
+            <!-- Olympians from Kronos + Rhea -->
+            <div style="display:flex;gap:0.8rem;align-items:flex-start;position:relative;margin-top:0;flex-wrap:wrap;justify-content:center;">
+              <div style="position:absolute;top:0;left:0;right:0;height:1px;background:rgba(100,140,181,0.2);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Zeus</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Hera</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Poseidon</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Demeter</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Hades</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;">
+                <div class="tn-vert-up"></div>
+                <div class="tn-box olympian" style="font-size:0.75rem;">Hestia</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nyx branch -->
+          <div style="display:flex;flex-direction:column;align-items:center;gap:0.3rem;">
+            <div style="font-family:'Space Mono',monospace;font-size:0.48rem;letter-spacing:0.12em;color:var(--muted);text-transform:uppercase;">Children of Nyx (Night)</div>
+            <div style="display:flex;flex-direction:column;gap:0.4rem;align-items:flex-start;">
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Θάνατος · Thanatos — Death</div>
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Ὕπνος · Hypnos — Sleep</div>
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Μοῖραι · Moirai — Fates</div>
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Ἐρινύες · Erinyes — Furies</div>
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Ἔρις · Eris — Strife</div>
+              <div class="tn-box nymph" style="font-size:0.72rem;min-width:140px;">Νέμεσις · Nemesis — Retribution</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;gap:1.5rem;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;border:1px solid rgba(201,168,76,0.5);background:rgba(201,168,76,0.07);"></div><span style="font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;">Primordial</span></div>
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;border:1px solid rgba(181,104,58,0.45);background:rgba(181,104,58,0.08);"></div><span style="font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;">Titan</span></div>
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;border:1px solid rgba(100,140,181,0.4);background:rgba(100,140,181,0.07);"></div><span style="font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;">Olympian</span></div>
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;border:1px solid rgba(80,160,100,0.35);background:rgba(80,160,100,0.06);"></div><span style="font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase;">Other Divine</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ BODY: COSMOS ══════ -->
+<article class="article-body" id="cosmos">
+
+  <h2><span class="h2-num">Chapter III · Structure of Reality</span>The Greek <em>Cosmos</em></h2>
+  <p>For the Greeks, the universe was not infinite and indifferent. It was layered, purposeful, and populated at every level with divine or semi-divine presences. The cosmos had a clear vertical hierarchy — from the blazing heights of Olympus to the lightless depths of Tartarus — and this geography encoded a moral philosophy: nearness to the gods meant nearness to light, order, and life.</p>
+
+  <div class="cosmos-diagram">
+    <div class="cosmos-layer" style="--layer-col: rgba(201,168,76,0.8); --layer-bg: rgba(201,168,76,0.05);">
+      <div class="cosmos-layer-name">⚡ Olympus</div>
+      <div class="cosmos-layer-desc">The celestial palace of the twelve Olympians. Not a physical mountain but a realm above all weather, bathed in eternal light. Zeus's throne and court of divine governance.</div>
+    </div>
+    <div class="cosmos-layer" style="--layer-col: rgba(180,220,255,0.7); --layer-bg: rgba(180,220,255,0.03);">
+      <div class="cosmos-layer-name">☀ Aether / Sky</div>
+      <div class="cosmos-layer-desc">The upper atmosphere, pure and luminous. Domain of Helios (Sun) and Selene (Moon), traversing the sky each day and night in their divine chariots.</div>
+    </div>
+    <div class="cosmos-layer" style="--layer-col: rgba(120,200,120,0.7); --layer-bg: rgba(120,200,120,0.03);">
+      <div class="cosmos-layer-name">⊕ Earth — Gaia</div>
+      <div class="cosmos-layer-desc">The mortal world. A flat disc surrounded by the river Oceanus. Cities, forests, seas, and mountains — the stage on which myth is played out. Sacred sites marked divine presence.</div>
+    </div>
+    <div class="cosmos-layer" style="--layer-col: rgba(80,130,200,0.65); --layer-bg: rgba(80,130,200,0.03);">
+      <div class="cosmos-layer-name">🌊 Oceanus</div>
+      <div class="cosmos-layer-desc">The great river encircling the world-disc. Beyond it: the lands of the dead, the Hesperides, and the edges of the known world. Domain of the Titan Oceanus and 3,000 Oceanid nymphs.</div>
+    </div>
+    <div class="cosmos-layer" style="--layer-col: rgba(100,80,180,0.65); --layer-bg: rgba(100,80,180,0.03);">
+      <div class="cosmos-layer-name">👁 Hades — The Underworld</div>
+      <div class="cosmos-layer-desc">Kingdom of the dead, ruled by Hades and Persephone. Divided into realms of punishment (Tartarus), reward (Elysium), and the grey middle ground (Asphodel Meadows). Bordered by five sacred rivers.</div>
+    </div>
+    <div class="cosmos-layer" style="--layer-col: rgba(200,60,60,0.6); --layer-bg: rgba(200,60,60,0.04);">
+      <div class="cosmos-layer-name">🔥 Tartarus</div>
+      <div class="cosmos-layer-desc">The primordial abyss. As far below Hades as earth is below sky. Prison of the Titans after the Titanomachy. Home of the most extreme punishments — Tantalus, Sisyphus, Ixion — and of Typhon, the last great monster.</div>
+    </div>
+  </div>
+
+</article>
+
+<!-- ══════ PANEL 3: OLYMPIANS ══════ -->
+<div class="panel" id="olympians">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter IV · The Divine Pantheon</div>
+    <h2 class="panel-title">The Twelve Olympians</h2>
+    <p class="panel-subtitle">The ruling gods of Olympus — each sovereign over a domain of natural and human life. Their conflicts and alliances shaped every myth, every war, and every mortal fate.</p>
+
+    <div class="olympians-grid">
+
+      <div class="olympian-cell" style="--cell-color: rgba(201,168,76,0.8);">
+        <div class="ol-symbol">⚡</div>
+        <div class="ol-name">Zeus</div>
+        <div class="ol-greek">ΖΕΥΣ · Jupiter</div>
+        <div class="ol-domain">Sky · Thunder · Justice · Kingship</div>
+        <div class="ol-desc">King of the gods. Wielder of the thunderbolt. Upholder of cosmic order and justice — yet himself an inveterate adulterer whose affairs generated half the myths. Symbol: eagle, oak, thunderbolt.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(200,180,120,0.7);">
+        <div class="ol-symbol">🦚</div>
+        <div class="ol-name">Hera</div>
+        <div class="ol-greek">ΗΡΑ · Juno</div>
+        <div class="ol-domain">Marriage · Women · Childbirth</div>
+        <div class="ol-desc">Queen of Olympus. Protector of marriage — and consequently consumed by jealousy of Zeus's liaisons. Her vengeance against Heracles, Io, and Echo make her myth's great wronged queen. Symbol: peacock, cow, pomegranate.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(80,130,200,0.7);">
+        <div class="ol-symbol">🔱</div>
+        <div class="ol-name">Poseidon</div>
+        <div class="ol-greek">ΠΟΣΕΙΔΩΝ · Neptune</div>
+        <div class="ol-domain">Sea · Earthquakes · Horses</div>
+        <div class="ol-desc">Lord of the seas and of earthquakes ("Earth-Shaker"). Drew lots with Zeus and Hades for dominion. Temperamental, prone to grudges — his enmity with Odysseus drove the Odyssey. Symbol: trident, horse, dolphin.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(120,180,80,0.65);">
+        <div class="ol-symbol">🌾</div>
+        <div class="ol-name">Demeter</div>
+        <div class="ol-greek">ΔΗΜΗΤΗΡ · Ceres</div>
+        <div class="ol-domain">Harvest · Agriculture · Seasons</div>
+        <div class="ol-desc">Goddess of the grain and harvest. Her grief over Persephone's abduction created winter — the first myth of seasonal change. Her Eleusinian Mysteries were the most widely practiced religious rites in the ancient world. Symbol: wheat, torch, corn.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(180,220,255,0.65);">
+        <div class="ol-symbol">🦉</div>
+        <div class="ol-name">Athena</div>
+        <div class="ol-greek">ΑΘΗΝΑ · Minerva</div>
+        <div class="ol-domain">Wisdom · Warfare (Strategy) · Crafts</div>
+        <div class="ol-desc">Born fully formed and armoured from Zeus's head. Goddess of intellect, not brute force — her warfare is strategic, not passionate. Patron of Athens, with the Parthenon as her ultimate tribute. Symbol: owl, olive tree, aegis.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(255,220,100,0.6);">
+        <div class="ol-symbol">🏹</div>
+        <div class="ol-name">Apollo</div>
+        <div class="ol-greek">ΑΠΟΛΛΩΝ · Apollo</div>
+        <div class="ol-domain">Sun · Music · Prophecy · Medicine</div>
+        <div class="ol-desc">The god of light, arts, and reason. His oracle at Delphi was the most authoritative voice in the ancient world. Twin of Artemis. His arrows brought plague; his medicine cured. The most "Greek" of gods — reason, beauty, measure. Symbol: lyre, laurel, sun, bow.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(180,240,180,0.55);">
+        <div class="ol-symbol">🌙</div>
+        <div class="ol-name">Artemis</div>
+        <div class="ol-greek">ΑΡΤΕΜΙΣ · Diana</div>
+        <div class="ol-domain">Hunt · Moon · Wilderness · Chastity</div>
+        <div class="ol-desc">Twin of Apollo. Virgin huntress of the wilderness, protector of young women and girls. Her independence was absolute — Actaeon died for accidentally seeing her bathe. Both healer and destroyer of women in childbirth. Symbol: crescent moon, deer, bow.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(200,80,80,0.6);">
+        <div class="ol-symbol">⚔</div>
+        <div class="ol-name">Ares</div>
+        <div class="ol-greek">ΑΡΗΣ · Mars</div>
+        <div class="ol-domain">War (Bloodlust) · Violence · Courage</div>
+        <div class="ol-desc">God of war's violent, chaotic aspect — distinguished from Athena's strategic warfare. Universally disliked by the other gods; even Zeus called him the most hateful. Lover of Aphrodite; father of Phobos (Fear) and Deimos (Terror). Symbol: spear, shield, vulture.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(255,160,160,0.6);">
+        <div class="ol-symbol">🌹</div>
+        <div class="ol-name">Aphrodite</div>
+        <div class="ol-greek">ΑΦΡΟΔΙΤΗ · Venus</div>
+        <div class="ol-domain">Love · Beauty · Desire · Procreation</div>
+        <div class="ol-desc">Born from sea-foam where Uranus's severed genitals fell. The most dangerous of gods: her power — desire — operates on immortals and mortals alike. Her judgment of Paris sparked the Trojan War. Married to Hephaestus; lover of Ares. Symbol: dove, rose, myrtle.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(150,120,80,0.6);">
+        <div class="ol-symbol">🔨</div>
+        <div class="ol-name">Hephaestus</div>
+        <div class="ol-greek">ΗΦΑΙΣΤΟΣ · Vulcan</div>
+        <div class="ol-domain">Fire · Forge · Craftsmanship</div>
+        <div class="ol-desc">Divine craftsman and smith. Lame (thrown from Olympus as an infant — either by Hera, or by Zeus in a quarrel). Created divine armour, palaces, and Pandora's box. His lameness made him the gods' outsider — perhaps why he was the most human. Symbol: hammer, anvil, fire.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(200,220,100,0.55);">
+        <div class="ol-symbol">☿</div>
+        <div class="ol-name">Hermes</div>
+        <div class="ol-greek">ΕΡΜΗΣ · Mercury</div>
+        <div class="ol-domain">Messengers · Travel · Commerce · Thieves</div>
+        <div class="ol-desc">Divine messenger, guide of souls to Hades, patron of travelers, merchants, and thieves. The cleverest of gods — the only one who moved freely between all realms. Born in the morning; by evening had invented the lyre and stolen Apollo's cattle. Symbol: caduceus, winged sandals, petasus.</div>
+      </div>
+
+      <div class="olympian-cell" style="--cell-color: rgba(160,80,200,0.55);">
+        <div class="ol-symbol">🍇</div>
+        <div class="ol-name">Dionysus</div>
+        <div class="ol-greek">ΔΙΟΝΥΣΟΣ · Bacchus</div>
+        <div class="ol-domain">Wine · Ecstasy · Theatre · Madness</div>
+        <div class="ol-desc">Twice-born god — first from his mortal mother Semele (killed by Zeus's glory), then from Zeus's thigh. God of liberation: wine loosened social bonds, theatre allowed transformation, ecstasy dissolved the self. Nietzsche's Dionysian principle. Symbol: grapevine, thyrsus, leopard.</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <p style="font-size:0.85rem;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:0.08em;">Note: Hestia (goddess of the hearth) sometimes replaces Dionysus in the canonical twelve. The list was never entirely fixed — different cities honoured different configurations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL 4: AGES OF MAN ══════ -->
+<div class="panel" id="ages">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter V · Hesiod's Works and Days</div>
+    <h2 class="panel-title">The Five Ages of Man</h2>
+    <p class="panel-subtitle">Hesiod described a progressive decline from an original golden perfection into the troubled present — a mythology of history as degeneration. Each age is defined by its relationship to the gods, to labour, and to justice.</p>
+
+    <div class="ages-track">
+
+      <div class="age-row">
+        <div class="age-dot" style="--age-color: rgba(201,168,76,0.9);"></div>
+        <div>
+          <div class="age-label" style="--age-color: rgba(201,168,76,0.9);">Golden Age</div>
+          <div class="age-meta" style="--age-color: rgba(201,168,76,0.6);">Under Kronos · First Generation</div>
+        </div>
+        <div class="age-content">
+          <div class="age-title">The Age of Perfection</div>
+          <div class="age-desc">Humans lived like gods — no toil, no sorrow, no old age. The earth gave its fruits freely. Death came gently, like sleep. These first humans became the good daimons, guardian spirits of the earth after death.</div>
+          <div class="age-qualities">
+            <span class="aq" style="--age-color: rgba(201,168,76,0.5);">No Labour</span>
+            <span class="aq" style="--age-color: rgba(201,168,76,0.5);">No War</span>
+            <span class="aq" style="--age-color: rgba(201,168,76,0.5);">No Disease</span>
+            <span class="aq" style="--age-color: rgba(201,168,76,0.5);">No Old Age</span>
+            <span class="aq" style="--age-color: rgba(201,168,76,0.5);">Feasts with Gods</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="age-row">
+        <div class="age-dot" style="--age-color: rgba(200,210,230,0.8);"></div>
+        <div>
+          <div class="age-label" style="--age-color: rgba(200,210,230,0.8);">Silver Age</div>
+          <div class="age-meta" style="--age-color: rgba(200,210,230,0.5);">Under Zeus · Second Generation</div>
+        </div>
+        <div class="age-content">
+          <div class="age-title">The Age of Childhood</div>
+          <div class="age-desc">Humans spent a hundred years as children, foolish and undisciplined. Their adult lives were short and full of suffering — their own fault, as they refused to honour the gods or each other. Zeus destroyed them and buried them underground.</div>
+          <div class="age-qualities">
+            <span class="aq" style="--age-color: rgba(200,210,230,0.5);">Impiety</span>
+            <span class="aq" style="--age-color: rgba(200,210,230,0.5);">Childhood Extended</span>
+            <span class="aq" style="--age-color: rgba(200,210,230,0.5);">Brief Adulthood</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="age-row">
+        <div class="age-dot" style="--age-color: rgba(180,80,50,0.8);"></div>
+        <div>
+          <div class="age-label" style="--age-color: rgba(180,80,50,0.8);">Bronze Age</div>
+          <div class="age-meta" style="--age-color: rgba(180,80,50,0.5);">Warriors · Third Generation</div>
+        </div>
+        <div class="age-content">
+          <div class="age-title">The Age of War</div>
+          <div class="age-desc">A race of terrible warriors — powerful, hard, and warlike as bronze itself. Interested only in violence. They destroyed themselves through their own hands. Their spirits descended nameless into Hades, leaving no legacy.</div>
+          <div class="age-qualities">
+            <span class="aq" style="--age-color: rgba(180,80,50,0.5);">Total War</span>
+            <span class="aq" style="--age-color: rgba(180,80,50,0.5);">No Arts</span>
+            <span class="aq" style="--age-color: rgba(180,80,50,0.5);">Self-Destruction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="age-row">
+        <div class="age-dot" style="--age-color: rgba(181,104,58,0.9);"></div>
+        <div>
+          <div class="age-label" style="--age-color: rgba(181,104,58,0.9);">Heroic Age</div>
+          <div class="age-meta" style="--age-color: rgba(181,104,58,0.5);">Demigods · Fourth Generation</div>
+        </div>
+        <div class="age-content">
+          <div class="age-title">The Age of Heroes</div>
+          <div class="age-desc">A nobler race — the demigods, born of gods and mortals. Perseus, Achilles, Heracles, Odysseus. More just and godlike than their predecessors. They fought at Thebes and Troy. The best of them were translated to the Isles of the Blest after death — paradise.</div>
+          <div class="age-qualities">
+            <span class="aq" style="--age-color: rgba(181,104,58,0.5);">Demigods</span>
+            <span class="aq" style="--age-color: rgba(181,104,58,0.5);">Epic Warfare</span>
+            <span class="aq" style="--age-color: rgba(181,104,58,0.5);">Divine Favour</span>
+            <span class="aq" style="--age-color: rgba(181,104,58,0.5);">Isles of the Blest</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="age-row" style="border-bottom:none;">
+        <div class="age-dot" style="--age-color: rgba(130,130,140,0.7);"></div>
+        <div>
+          <div class="age-label" style="--age-color: rgba(130,130,140,0.7);">Iron Age</div>
+          <div class="age-meta" style="--age-color: rgba(130,130,140,0.45);">The Present · Fifth Generation</div>
+        </div>
+        <div class="age-content">
+          <div class="age-title">The Age of Toil</div>
+          <div class="age-desc">Our own age — and the worst. Full of labour, grief, strife, and injustice. The gods have withdrawn. Justice and Shame have fled the earth. Children dishonour parents; strangers abuse guests. Hesiod writes: "Would that I were not among the fifth generation of men, but either had died before or been born afterwards."</div>
+          <div class="age-qualities">
+            <span class="aq" style="--age-color: rgba(130,130,140,0.45);">Endless Labour</span>
+            <span class="aq" style="--age-color: rgba(130,130,140,0.45);">Injustice</span>
+            <span class="aq" style="--age-color: rgba(130,130,140,0.45);">Gods Absent</span>
+            <span class="aq" style="--age-color: rgba(130,130,140,0.45);">Present Day</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL 5: UNDERWORLD ══════ -->
+<div class="panel" id="underworld">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter VI · The Kingdom of Hades</div>
+    <h2 class="panel-title">The Underworld — Map of the Dead</h2>
+    <p class="panel-subtitle">The Greek afterlife was not heaven or hell but a complex geography — a realm of rivers, judges, and carefully differentiated fates. All the dead went there; what mattered was where you ended up.</p>
+
+    <div class="underworld-map">
+      <div class="uw-label-main">THE FIVE RIVERS OF THE DEAD</div>
+
+      <div class="uw-rivers">
+        <div class="uw-river-row">
+          <div class="river-name" style="--river-col: rgba(80,120,200,0.7);">Styx</div>
+          <div class="river-line" style="--river-col: rgba(80,120,200,0.3);"></div>
+          <div class="river-meaning">Hatred · The boundary oath of the gods</div>
+        </div>
+        <div class="uw-river-row">
+          <div class="river-name" style="--river-col: rgba(80,180,180,0.65);">Acheron</div>
+          <div class="river-line" style="--river-col: rgba(80,180,180,0.25);"></div>
+          <div class="river-meaning">Woe · Charon's ferry crossing</div>
+        </div>
+        <div class="uw-river-row">
+          <div class="river-name" style="--river-col: rgba(200,160,80,0.6);">Lethe</div>
+          <div class="river-line" style="--river-col: rgba(200,160,80,0.22);"></div>
+          <div class="river-meaning">Oblivion · Souls drink to forget their lives</div>
+        </div>
+        <div class="uw-river-row">
+          <div class="river-name" style="--river-col: rgba(200,80,80,0.6);">Phlegethon</div>
+          <div class="river-line" style="--river-col: rgba(200,80,80,0.22);"></div>
+          <div class="river-meaning">Fire · Flows toward Tartarus</div>
+        </div>
+        <div class="uw-river-row">
+          <div class="river-name" style="--river-col: rgba(140,100,200,0.55);">Cocytus</div>
+          <div class="river-line" style="--river-col: rgba(140,100,200,0.2);"></div>
+          <div class="river-meaning">Lamentation · The wailing of the unburied dead</div>
+        </div>
+      </div>
+
+      <div style="font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;color:rgba(181,104,58,0.5);text-transform:uppercase;text-align:center;margin-bottom:1.2rem;">ZONES OF THE AFTERLIFE · JUDGED BY MINOS, RHADAMANTHUS &amp; AEACUS</div>
+
+      <div class="uw-zones">
+        <div class="uw-zone" style="--zone-col: rgba(180,200,255,0.7);">
+          <div class="uw-zone-name">Asphodel Meadows</div>
+          <div class="uw-zone-greek">ΤΑ ΑΣΦΟΔΕΛΑ ΛΕΙΜΩΝΙΑ</div>
+          <p class="uw-zone-desc">The grey majority. Ordinary souls who were neither exceptionally virtuous nor wicked. They wander in a dim, joyless plain, drinking from the Lethe and forgetting their mortal lives. Homer's Achilles would rather be a slave among the living than a king here.</p>
+        </div>
+        <div class="uw-zone" style="--zone-col: rgba(120,200,120,0.7);">
+          <div class="uw-zone-name">Elysium · Isles of the Blest</div>
+          <div class="uw-zone-greek">ΗΛΥΣΙΟΝ · ΜΑΚΑΡΩΝ ΝΗΣΟΙ</div>
+          <p class="uw-zone-desc">Paradise — reserved for heroes, the exceptionally virtuous, and those chosen by the gods. Eternal sunshine, feasts, music, and games. Souls who reach Elysium three times may enter the Isles of the Blest — ultimate paradise, beyond even Elysium.</p>
+        </div>
+        <div class="uw-zone" style="--zone-col: rgba(140,100,180,0.65);">
+          <div class="uw-zone-name">Fields of Punishment</div>
+          <div class="uw-zone-greek">ΕΡΕΒΟΣ</div>
+          <p class="uw-zone-desc">For the wicked and impious. Not simply imprisonment, but specifically tailored punishments. Tantalus reaches for fruit forever just out of reach. Sisyphus rolls his boulder uphill forever. Ixion spins on a burning wheel. Punishment that mirrors the crime.</p>
+        </div>
+        <div class="uw-zone" style="--zone-col: rgba(100,120,200,0.65);">
+          <div class="uw-zone-name">The Palace of Hades</div>
+          <div class="uw-zone-greek">ΔΩΜΑΤΑ ΑΪΔΑΟ</div>
+          <p class="uw-zone-desc">Hades rules with Persephone, queen of the dead. Guarded by Cerberus, the three-headed hound who prevents the living from entering and the dead from leaving. The court of three judges — Minos, Rhadamanthus, Aeacus — determines each soul's fate.</p>
+        </div>
+      </div>
+
+      <div class="uw-deep">
+        <div class="uw-deep-name">🔥 Tartarus — The Abyss</div>
+        <p class="uw-deep-desc">As far below Hades as earth is below sky. Prison of the Titans. The worst of the wicked. Typhon, the last great monster, is here. The bronze gates are guarded by the Erinyes (Furies). No soul returns unaided — Orpheus and Heracles being the only mortals to descend and return.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL 6: HERO CYCLES ══════ -->
+<div class="panel" id="heroes">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter VII · The Heroic Tradition</div>
+    <h2 class="panel-title">The Great Hero Cycles</h2>
+    <p class="panel-subtitle">Greek heroes are not simply strong — they are human beings pushed to extremes, discovering both their greatness and their fatal flaws. Each major hero cycle follows a structural pattern: divine parentage, impossible labours, and a tragic or transcendent end.</p>
+
+    <div class="hero-cycles-grid">
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅰ';">
+        <div class="hc-tag">Hero Cycle I</div>
+        <div class="hc-name">Heracles</div>
+        <div class="hc-subtitle">Greatest of Heroes · Son of Zeus &amp; Alcmene</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Birth:</strong> Zeus fathers him on Alcmene; Hera's enmity begins immediately — she sends serpents to kill the infant.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Madness:</strong> Hera drives him mad; in a frenzy he kills his own wife and children. His penance: the Twelve Labours.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Twelve Labours:</strong> Nemean Lion · Lernaean Hydra · Cerynean Hind · Erymanthian Boar · Augean Stables · Stymphalian Birds · Cretan Bull · Mares of Diomedes · Belt of Hippolyta · Cattle of Geryon · Apples of the Hesperides · Cerberus.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Death &amp; Apotheosis:</strong> Poisoned by the Hydra-blood shirt of Nessus — his wife, Deianeira, believes it a love charm. Burns on his pyre and ascends to Olympus, finally reconciled with Hera and married to Hebe.</div></div>
+        </div>
+        <div class="hc-moral">"Strength without wisdom destroys the self. Suffering is not punishment — it is the price of greatness."</div>
+      </div>
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅱ';">
+        <div class="hc-tag">Hero Cycle II</div>
+        <div class="hc-name">Perseus</div>
+        <div class="hc-subtitle">Slayer of Medusa · Son of Zeus &amp; Danaë</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Origin:</strong> King Acrisius imprisons his daughter Danaë to prevent fulfilment of a prophecy. Zeus visits as golden rain. Perseus is born.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Quest:</strong> King Polydectes demands Medusa's head. Perseus receives divine gifts: Hermes's winged sandals, Athena's mirrored shield, Hades's helm of invisibility.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Medusa:</strong> Views her only in the shield's reflection; beheads her. From her neck spring Pegasus and Chrysaor. He carries the head — a weapon that turns to stone — in the kibisis bag.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Andromeda:</strong> Rescues the Ethiopian princess chained as sacrifice to the sea monster Cetus. Uses Medusa's head. They marry. He fulfils the prophecy by accidentally killing Acrisius at athletic games.</div></div>
+        </div>
+        <div class="hc-moral">"The hero's tools come from the gods, but the courage to use them is his own. Fate cannot be escaped — only navigated."</div>
+      </div>
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅲ';">
+        <div class="hc-tag">Hero Cycle III</div>
+        <div class="hc-name">Odysseus</div>
+        <div class="hc-subtitle">The Wanderer · King of Ithaca · Son of Laertes</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>After Troy:</strong> Ten years of wandering after the war — Poseidon's wrath because Odysseus blinded his son, the Cyclops Polyphemus.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Obstacles:</strong> Sirens · Scylla &amp; Charybdis · Circe (who turns men to pigs) · Polyphemus · the Laestrygonians · Calypso (seven years' captivity) · the Land of the Dead (Nekyia).</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Nekyia:</strong> Descends to the underworld — unique among living heroes — to consult the shade of Tiresias. Meets Achilles, his mother, and the great heroes of the past.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Return:</strong> Arrives home in disguise. Passes the test of the bow — only he can string it. Kills the suitors. Reunited with Penelope after twenty years.</div></div>
+        </div>
+        <div class="hc-moral">"Intelligence and endurance outlast brute strength. Home is worth every ordeal — but you become who you are through the journey."</div>
+      </div>
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅳ';">
+        <div class="hc-tag">Hero Cycle IV</div>
+        <div class="hc-name">Achilles</div>
+        <div class="hc-subtitle">Greatest Warrior · Son of Peleus &amp; Thetis</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Prophecy:</strong> Either a long, obscure life or a short life of eternal glory. Achilles chose glory — and the Iliad is its accounting.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Heel:</strong> Thetis dipped him in the Styx for invulnerability, holding him by the heel. His one vulnerability — a mythological addition; Homer doesn't mention it.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Wrath:</strong> The entire Iliad turns on his rage at Agamemnon's dishonour — his withdrawal from battle, his return after Patroclus's death, his slaying of Hector.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Death:</strong> Apollo guides Paris's arrow to his heel. Dies outside the walls of Troy — never entering the city he effectively destroys.</div></div>
+        </div>
+        <div class="hc-moral">"The choice between safety and glory defines a life. Wrath is power — but also destruction. Even the greatest hero is mortal."</div>
+      </div>
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅴ';">
+        <div class="hc-tag">Hero Cycle V</div>
+        <div class="hc-name">Orpheus</div>
+        <div class="hc-subtitle">The Musician · Son of Apollo &amp; Calliope</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Gift:</strong> Music so perfect that trees followed his lyre, rivers stopped, and wild beasts became tame. Sailed with the Argonauts — drowned out the Sirens with his song.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Eurydice:</strong> His wife bitten by a serpent on their wedding day. Orpheus descends to Hades — the only mortal to do so through sheer beauty of music.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Condition:</strong> Hades grants Eurydice's return on one condition: Orpheus must not look back as he leads her out. He cannot bear the uncertainty — at the threshold, he turns.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Death:</strong> Torn apart by Bacchantes (Maenads) whom he refused. His head, still singing, floated down the river Hebrus to the sea.</div></div>
+        </div>
+        <div class="hc-moral">"Love's greatest enemy is doubt. Art can move death itself — but cannot survive the human need for certainty."</div>
+      </div>
+
+      <div class="hero-cycle-card" style="--hero-num:'Ⅵ';">
+        <div class="hc-tag">Hero Cycle VI</div>
+        <div class="hc-name">Oedipus</div>
+        <div class="hc-subtitle">The Tragic King · Son of Laius &amp; Jocasta</div>
+        <div class="hc-steps">
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Oracle:</strong> Apollo prophecies that Laius will be killed by his own son. The infant Oedipus is left to die on a mountainside, feet pierced. Adopted by the King of Corinth.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Flight:</strong> Learning the prophecy himself, Oedipus flees Corinth — towards Thebes. At a crossroads, kills an old man in a quarrel. The man is Laius. His father.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>The Sphinx:</strong> Solves the riddle ("What walks on four legs in the morning, two at noon, three in the evening?"). Answer: Man. Becomes King of Thebes. Marries the widowed queen. His mother.</div></div>
+          <div class="hc-step"><div class="hc-step-dot"></div><div><strong>Discovery:</strong> The truth emerges piece by piece. Jocasta hangs herself. Oedipus blinds himself with her brooches. Exiles himself to Colonus — where he dies, mysteriously, transfigured.</div></div>
+        </div>
+        <div class="hc-moral">"Fate cannot be escaped by fleeing it. The investigation of truth, even when it destroys us, is the most human act. Self-knowledge is both the wound and the cure."</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ PANEL 7: TROJAN WAR TIMELINE ══════ -->
+<div class="panel" id="troy">
+  <div class="panel-inner">
+    <div class="panel-label">Chapter VIII · The Epic Cycle</div>
+    <h2 class="panel-title">The Trojan War — A Timeline</h2>
+    <p class="panel-subtitle">The central myth-event of Greek civilisation — drawn from the <em>Iliad</em>, <em>Odyssey</em>, and the lost Epic Cycle. Ten years of war over one woman, driven by the gods, and ending in the destruction of a civilisation.</p>
+
+    <div class="trojan-timeline">
+
+      <div class="tj-event">
+        <div class="tj-num">I</div>
+        <div class="tj-content">
+          <div class="tj-tag">The Seed of War</div>
+          <div class="tj-title">The Wedding of Peleus &amp; Thetis</div>
+          <p class="tj-desc">Eris (Discord), not invited, throws a golden apple inscribed "For the Fairest." Hera, Athena, and Aphrodite each claim it. Zeus refuses to judge. The task falls to Paris, prince of Troy — a shepherd on Mount Ida.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">II</div>
+        <div class="tj-content">
+          <div class="tj-tag">The Judgment</div>
+          <div class="tj-title">The Judgment of Paris</div>
+          <p class="tj-desc">Each goddess offers a bribe. Hera: political power. Athena: wisdom and martial skill. Aphrodite: the most beautiful woman in the world — Helen, wife of Menelaus of Sparta. Paris chooses Aphrodite. The other goddesses become implacable enemies of Troy.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">III</div>
+        <div class="tj-content">
+          <div class="tj-tag">Abduction · c. 1194 BCE (myth-time)</div>
+          <div class="tj-title">Helen Departs for Troy</div>
+          <p class="tj-desc">Paris visits Sparta as a guest of Menelaus. Violating xenia (sacred hospitality), he abducts Helen while Menelaus is away in Crete. Whether Helen went willingly — seduced by Aphrodite's power, or in love, or as a captive — is never resolved. The ambiguity is the myth's heart.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">IV</div>
+        <div class="tj-content">
+          <div class="tj-tag">The Gathering</div>
+          <div class="tj-title">Agamemnon Musters the Greeks</div>
+          <p class="tj-desc">Menelaus appeals to his brother Agamemnon, High King of Mycenae. Under the oath of Tyndareus (all suitors of Helen swore to defend whoever won her), the Greek kings are bound to war. The fleet gathers at Aulis — and stalls there, becalmed, until Agamemnon sacrifices his daughter Iphigenia to Artemis for wind.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">V</div>
+        <div class="tj-content">
+          <div class="tj-tag">The War · Years 1–9</div>
+          <div class="tj-title">Nine Years Before the Iliad</div>
+          <p class="tj-desc">Homer's Iliad covers only fifty-one days in the tenth year. The preceding nine years: raids on surrounding cities, failed negotiations, the death of Protesilaus (first Greek to land — first to die), raids on Tenedos, Chryse, Lesbos. The war that seemed it would end quickly instead hardened into a siege.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">VI</div>
+        <div class="tj-content">
+          <div class="tj-tag">The Iliad · Year 10</div>
+          <div class="tj-title">The Wrath of Achilles</div>
+          <p class="tj-desc">Agamemnon takes Briseis, Achilles's prize-captive. Achilles withdraws from battle. The Greeks falter catastrophically. Zeus honours his promise to Thetis — to make the Greeks suffer until they appreciate Achilles. Hector kills Patroclus (wearing Achilles's armour). Achilles returns, kills Hector, desecrates his body. Priam's midnight embassy recovers his son's corpse.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">VII</div>
+        <div class="tj-content">
+          <div class="tj-tag">After the Iliad</div>
+          <div class="tj-title">The Death of Achilles &amp; the Wooden Horse</div>
+          <p class="tj-desc">Amazon queen Penthesilea and Ethiopian king Memnon fight for Troy; both killed by Achilles. Apollo guides Paris's arrow to Achilles's heel. Paris killed by Philoctetes's bow (Heracles's divine weapon). Odysseus devises the Trojan Horse — a hollow wooden structure left as an offering, filled with Greek warriors. The Trojans bring it inside their walls. At night: the Greeks emerge. Troy burns.</p>
+        </div>
+      </div>
+
+      <div class="tj-event">
+        <div class="tj-num">VIII</div>
+        <div class="tj-content">
+          <div class="tj-tag">Aftermath</div>
+          <div class="tj-title">The Nostos — The Returns</div>
+          <p class="tj-desc">The sack of Troy violated the sacred — Cassandra raped at Athena's altar, Priam killed at Zeus's altar. The gods punished the Greeks in their homecomings (nostos). Agamemnon: murdered by Clytemnestra on arrival. Ajax: drowned by Poseidon. Menelaus: stranded in Egypt for seven years. Odysseus: ten years of wandering. Only Nestor returned swiftly and safely.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════ BODY: LEGACY ══════ -->
+<article class="article-body" id="legacy">
+  <div class="rule"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+
+  <h2><span class="h2-num">Chapter IX · Why It Still Matters</span>The <em>Legacy</em> of Myth</h2>
+
+  <p>Greek mythology is not ancient history. It is the operating system beneath Western civilisation's surface. Every time we use the word <em>narcissism</em>, we invoke Narcissus. <em>Panic</em> comes from Pan. An <em>odyssey</em> is Odysseus. The planets Mars, Venus, Mercury, Jupiter, Saturn, Neptune are the Roman names for the same gods. <em>Music</em> comes from the Muses. <em>Chaos</em> is the Greek primordial void. The very word <em>psychology</em> comes from Psyche.</p>
+
+  <p>But beyond etymology, Greek myth endures because its psychological insights are accurate. It describes, with narrative precision, what it feels like to be at the mercy of forces larger than yourself — called gods because they are overwhelming, but recognisable as pride, desire, jealousy, grief. The Greeks invented the concept of <strong>hubris</strong> — not simply arrogance, but the specific human tendency to overreach, to place oneself in the territory of the gods. Every Greek tragedy is a meditation on where the limits of human agency lie.</p>
+
+  <div class="pull">
+    "The Greeks did not make their gods into perfect beings. They made them into amplified humans — and in doing so, they said something true about the nature of power that political philosophers have been trying to say ever since."
+    <cite>— Bernard Knox, The Oldest Dead White European Males, 1993</cite>
+  </div>
+
+  <h3>Myth as Philosophy</h3>
+
+  <p>The pre-Socratic philosophers arose directly from the mythological tradition — and largely replaced its supernatural explanations with natural ones. Thales replaced Poseidon (water as divine power) with water as fundamental element. Heraclitus replaced Zeus (lightning-order) with Logos (reason-order). The myths weren't simply wrong and replaced by philosophy; they were philosophy in narrative form, translated into abstract argument.</p>
+
+  <p>Plato himself used myth — the Cave, the Ring of Gyges, the Myth of Er — precisely because he understood that narrative reaches parts of the mind that argument cannot. The border between Greek myth and Greek philosophy is permeable. Both are attempts to answer the same questions: Why do we suffer? What is justice? What survives death? What does it mean to be human?</p>
+
+  <h3>The Living Tradition</h3>
+
+  <p>From Virgil to Shakespeare to Keats to Freud — who named the Oedipus Complex and the Narcissistic personality after Greek myths — to Joyce's <em>Ulysses</em> to contemporary novels by Madeline Miller and Pat Barker, Greek mythology has never stopped generating new thought. Each generation discovers in these stories a mirror: not of the ancient world, but of itself.</p>
+
+  <p>The myths survive not because the Greeks were exceptional but because human nature has not changed. We still make the choices that drive tragedy. We still face the questions the myths address. We still, occasionally, catch a glimpse of something larger than ourselves in the behaviour of lightning, the vastness of the sea, the silence of a forest at dusk — and understand why those ancient minds populated those forces with personalities. It is not primitive. It is honest.</p>
+
+  <div class="callout">
+    <div class="callout-label">An Observation</div>
+    <p>The Greeks built their myths not to comfort but to clarify. A mythology that includes the Erinyes — the Furies who pursue blood guilt — and the Moirai who cut the thread of life regardless of virtue, is not a mythology of easy consolation. It is a mythology of clear-eyed realism: the world is not just, the powerful abuse the weak, suffering is not deserved, and yet — life is worth the ordeal. That combination of unflinching realism and affirmation is the tradition's greatest achievement, and its permanent value.</p>
+  </div>
+
+  <div class="rule"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+
+</article>
+
+<!-- MORE SECTION -->
+<section class="more-section">
+  <div class="more-inner">
+    <div class="more-label">Continue Reading</div>
+    <h2 class="more-title">More in Mythology &amp; Culture</h2>
+    <div class="more-grid">
+
+      <div class="more-card">
+        <div class="more-card-tag">Coming Soon</div>
+        <h4>Roman Mythology — The Translation</h4>
+        <p>How Rome inherited, adapted, and politically weaponised the Greek gods — and why the translation reveals as much about Roman ambition as about Greek originals.</p>
+        <span class="soon">In preparation</span>
+      </div>
+
+      <div class="more-card">
+        <div class="more-card-tag">Coming Soon</div>
+        <h4>Hesiod's Theogony — Close Reading</h4>
+        <p>The creation story in full — the text that shaped the Western understanding of myth, read carefully for what it says about power, gender, and the origins of evil.</p>
+        <span class="soon">In preparation</span>
+      </div>
+
+      <div class="more-card">
+        <div class="more-card-tag">Coming Soon</div>
+        <h4>The Eleusinian Mysteries</h4>
+        <p>The most important religious rites of the ancient world — practised for two thousand years, then lost. What we know, what we don't, and why Persephone was at the centre.</p>
+        <span class="soon">In preparation</span>
+      </div>
+
+    </div>
+
+    <a href="../../index.html#mythology" class="arrow-link">← All Mythology essays</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="article-footer">
+  <a href="../../index.html" class="footer-brand">Studiolo</a>
+  <div class="footer-sub">A Cabinet of Curiosities · © 2026 Jeevan Kumar</div>
+</footer>
+
+<script>
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  }, { passive: true });
+</script>
+
+</body>
+</html>

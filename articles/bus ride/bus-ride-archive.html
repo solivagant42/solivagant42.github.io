@@ -3,457 +3,451 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bus Ride Photographs Archive — Studiolo · Jeevan Kumar</title>
-  <meta name="description" content="An ongoing photographic study of Bengaluru through the bus window. Black & white. Unposed. Archive 1 – ongoing.">
+  <title>Bus Ride Photographs — Jeevan Kumar</title>
+  <meta name="description" content="An ongoing photographic study of Bengaluru through the bus window. Black & white. Archive I – XXXV.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 
   <style>
-    /* ── RESET & BASE ── */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    :root {
-      --black:   #050403;
-      --night:   #0b0906;
-      --dark:    #110f0c;
-      --panel:   #161310;
-      --border:  rgba(255,255,255,.07);
-      --muted:   rgba(245,240,232,.55);
-      --cream:   #f5f0e8;
-      --gold:    #c9a84c;
-      --gold-dim:#8a6e2e;
-      --rose:    #fb7185;
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-      --f-display: 'Playfair Display', Georgia, serif;
+    :root {
+      --bg:        #080808;
+      --bg2:       #0e0e0e;
+      --white:     #ffffff;
+      --w90:       rgba(255,255,255,.9);
+      --w60:       rgba(255,255,255,.6);
+      --w30:       rgba(255,255,255,.3);
+      --w12:       rgba(255,255,255,.12);
+      --w06:       rgba(255,255,255,.06);
+      --gap:       2px;
+
+      --f-serif:   'Playfair Display', Georgia, serif;
       --f-body:    'Cormorant Garamond', Georgia, serif;
-      --f-mono:    'Space Mono', monospace;
+      --f-mono:    'DM Mono', monospace;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--cream);
+      background: var(--bg);
+      color: var(--white);
       font-family: var(--f-body);
-      font-size: 1.15rem;
-      line-height: 1.85;
-      cursor: crosshair;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      cursor: default;
     }
 
-    /* Grain overlay */
+    /* Grain */
     body::before {
       content: '';
-      position: fixed; inset: 0;
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: .45;
+      opacity: .4;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.1rem 2.5rem;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      height: 52px;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(5,4,3,.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      background: rgba(8,8,8,.9);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--w06);
     }
     .nav-back {
-      font-family: var(--f-mono); font-size: .72rem; letter-spacing: .1em;
-      color: var(--muted); text-decoration: none; text-transform: uppercase;
-      transition: color .2s;
+      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30);
+      text-decoration: none; transition: color .2s;
     }
-    .nav-back:hover { color: var(--gold); }
-    .nav-logo {
-      font-family: var(--f-display); font-size: 1.05rem;
-      color: var(--cream); text-decoration: none; letter-spacing: .03em;
+    .nav-back:hover { color: var(--white); }
+    .nav-brand {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: var(--f-serif); font-size: .95rem; letter-spacing: .02em;
+      color: var(--w90); text-decoration: none;
     }
-    .nav-tumblr {
-      font-family: var(--f-mono); font-size: .72rem; letter-spacing: .1em;
-      color: var(--muted); text-decoration: none; text-transform: uppercase;
-      border: 1px solid var(--border); padding: .4rem .9rem;
-      transition: all .2s;
+    .nav-cta {
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30);
+      text-decoration: none; border: 1px solid var(--w12);
+      padding: .32rem .9rem; transition: all .2s;
     }
-    .nav-tumblr:hover { color: var(--cream); border-color: var(--gold); }
+    .nav-cta:hover { color: var(--white); border-color: var(--w60); }
 
     /* ── HERO ── */
     .hero {
-      position: relative; height: 100svh; min-height: 600px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      overflow: hidden;
+      margin-top: 52px;
+      height: calc(100svh - 52px); min-height: 560px;
+      position: relative; overflow: hidden;
+      background: var(--bg);
+      display: flex; align-items: flex-end;
     }
     .hero-img {
       position: absolute; inset: 0;
-      background: url('https://64.media.tumblr.com/10f6639172e96f95b6ccfeb3f3535c4a/9c66933edd34ef97-81/s1280x1920/d9175d08abd1fe6893e745c945f67b19524f4dad.jpg') center/cover no-repeat;
-      filter: brightness(.45);
-      transition: transform 8s ease;
+      background: url('https://64.media.tumblr.com/b1e5b6a3aafba67687910fa4f1bef021/df0d013a9bc1fd6f-7a/s2048x3072/341cfef55c1c12cf4fa6befb154beaf234464770.jpg') center/cover no-repeat;
+      filter: brightness(.35) contrast(1.1);
+      transform: scale(1.05);
+      transition: transform 14s ease;
     }
-    .hero:hover .hero-img { transform: scale(1.03); }
-    .hero-vignette {
+    .hero:hover .hero-img { transform: scale(1); }
+    .hero-veil {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(5,4,3,1) 0%, rgba(5,4,3,.4) 40%, transparent 70%);
+      background: linear-gradient(to top, rgba(8,8,8,1) 0%, rgba(8,8,8,.5) 35%, rgba(8,8,8,.1) 65%, transparent 80%);
     }
     .hero-content {
       position: relative; z-index: 2;
-      padding: 0 4rem 5rem;
-      max-width: 900px;
+      padding: 0 3rem 5rem;
+      max-width: 880px;
     }
-    .hero-eyebrow {
-      font-family: var(--f-mono); font-size: .7rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+    .hero-tag {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .24em;
+      text-transform: uppercase; color: var(--w30); margin-bottom: 1.4rem;
     }
-    .hero-title {
-      font-family: var(--f-display); font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 400; line-height: 1.05; letter-spacing: -.02em;
-      color: var(--cream); margin-bottom: 1.5rem;
+    .hero-h {
+      font-family: var(--f-serif);
+      font-size: clamp(3.2rem, 8.5vw, 7rem);
+      font-weight: 400; line-height: .92;
+      letter-spacing: -.03em; color: var(--white);
+      margin-bottom: 2.2rem;
     }
-    .hero-title em { font-style: italic; color: rgba(245,240,232,.7); }
+    .hero-h em { font-style: italic; color: var(--w60); }
     .hero-meta {
-      font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted);
-      display: flex; gap: 2rem; flex-wrap: wrap;
+      display: flex; align-items: center; gap: 1.6rem; flex-wrap: wrap;
     }
-    .hero-scroll {
-      position: absolute; bottom: 2rem; right: 4rem; z-index: 2;
+    .hero-meta span {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--w30);
+    }
+    .hero-meta i { width: 22px; height: 1px; background: var(--w12); }
+    .scroll-cue {
+      position: absolute; right: 3rem; bottom: 2rem; z-index: 2;
       display: flex; flex-direction: column; align-items: center; gap: .5rem;
-      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--muted);
-      animation: scrollpulse 2.5s ease-in-out infinite;
+      font-family: var(--f-mono); font-size: .52rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--w30);
+      animation: blink 2.6s ease-in-out infinite;
     }
-    .hero-scroll::after {
-      content: ''; width: 1px; height: 50px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+    .scroll-cue::after {
+      content: ''; width: 1px; height: 42px;
+      background: linear-gradient(to bottom, var(--w30), transparent);
     }
-    @keyframes scrollpulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+    @keyframes blink { 0%,100%{opacity:.3} 50%{opacity:.8} }
 
     /* ── STATEMENT ── */
     .statement {
-      background: var(--night);
-      padding: 7rem 4rem;
-      border-bottom: 1px solid var(--border);
+      padding: 9rem 3rem;
+      border-bottom: 1px solid var(--w06);
     }
-    .statement-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start;
+    .stmt-wrap {
+      max-width: 1080px; margin: 0 auto;
+      display: grid; grid-template-columns: 220px 1fr; gap: 7rem;
     }
-    .stmt-label {
-      font-family: var(--f-mono); font-size: .68rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 1.5rem;
+    .stmt-sidebar {
+      position: sticky; top: 72px; height: fit-content;
+    }
+    .stmt-tag {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--w30); margin-bottom: 1.4rem;
     }
     .stmt-h {
-      font-family: var(--f-display); font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 400; line-height: 1.25; color: var(--cream);
+      font-family: var(--f-serif);
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      font-weight: 400; line-height: 1.25; color: var(--w90);
     }
-    .stmt-h em { font-style: italic; }
-    .stmt-number {
-      font-family: var(--f-mono); font-size: 5rem; line-height: 1;
-      color: rgba(201,168,76,.12); margin-top: 2rem; letter-spacing: -.05em;
+    .stmt-h em { font-style: italic; color: var(--white); }
+    .stmt-rule { width: 28px; height: 1px; background: var(--w30); margin: 2rem 0; }
+    .stmt-meta {
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30); line-height: 2.2;
     }
-    .stmt-body { display: flex; flex-direction: column; gap: 0; }
+    .stmt-body {}
     .stmt-p {
-      font-size: 1.22rem; line-height: 2; color: rgba(245,240,232,.8);
-      margin-bottom: 1.6rem;
+      font-size: 1.2rem; line-height: 2.05; color: var(--w60);
+      margin-bottom: 1.8rem;
     }
     .stmt-p:last-child { margin-bottom: 0; }
-    .stmt-p em { font-style: italic; color: var(--cream); }
-    .stmt-quote {
+    .stmt-p em { font-style: italic; color: var(--w90); }
+    .stmt-blockquote {
       margin: 2.5rem 0;
       padding: 1.5rem 0 1.5rem 2rem;
-      border-left: 2px solid var(--gold);
-      font-family: var(--f-display); font-size: 1.35rem; font-style: italic;
-      color: var(--cream); line-height: 1.65;
+      border-left: 1px solid var(--w30);
+      font-family: var(--f-serif); font-size: 1.3rem;
+      font-style: italic; color: var(--white); line-height: 1.7;
     }
 
-    /* ── ARCHIVE COUNTER ── */
-    .counter-strip {
-      background: var(--dark);
-      padding: 3rem 4rem;
-      border-bottom: 1px solid var(--border);
+    /* ── ARCHIVE COUNT BAR ── */
+    .count-bar {
+      border-bottom: 1px solid var(--w06);
+      padding: 2.5rem 3rem;
     }
-    .counter-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: flex; gap: 5rem; align-items: center; flex-wrap: wrap;
+    .count-wrap {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: center; gap: 0;
     }
-    .counter-item { text-align: center; }
-    .c-num {
-      font-family: var(--f-display); font-size: 3rem; font-weight: 400;
-      color: var(--gold); line-height: 1; display: block;
+    .c-item { flex: 1; text-align: center; }
+    .c-item:not(:last-child) { border-right: 1px solid var(--w06); }
+    .c-n {
+      font-family: var(--f-serif); font-size: 2.4rem;
+      font-weight: 400; color: var(--white); display: block; line-height: 1;
     }
-    .c-label {
-      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--muted); margin-top: .4rem; display: block;
-    }
-    .counter-divider { width: 1px; height: 60px; background: var(--border); }
-
-    /* ── SECTION LABEL ── */
-    .section-intro {
-      padding: 6rem 4rem 3rem;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .sec-eyebrow {
-      font-family: var(--f-mono); font-size: .68rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
-    }
-    .sec-h {
-      font-family: var(--f-display); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 400; color: var(--cream); line-height: 1.2;
+    .c-l {
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--w30);
+      display: block; margin-top: .4rem;
     }
 
-    /* ── FULL BLEED IMAGE ── */
-    .full-bleed {
-      width: 100%; margin: 0;
-      position: relative; overflow: hidden;
-      background: var(--panel);
-    }
-    .full-bleed img {
-      width: 100%; height: auto;
-      display: block;
-      filter: brightness(.92) contrast(1.08);
-      transition: filter .4s;
-    }
-    .full-bleed:hover img { filter: brightness(1) contrast(1.05); }
+    /* ── ARCHIVE SECTION ── */
+    .archive-section { border-bottom: 1px solid var(--w06); }
 
-    /* ── CAPTION BLOCK ── */
-    .caption-block {
-      padding: 3.5rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.8fr; gap: 5rem; align-items: start;
+    .arch-header {
+      padding: 4.5rem 3rem 2rem;
+      max-width: 1080px; margin: 0 auto;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: 2rem;
     }
-    .cap-meta { }
-    .cap-archive {
-      font-family: var(--f-mono); font-size: .65rem; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: .8rem;
+    .arch-label { display: flex; align-items: baseline; gap: 1.2rem; }
+    .arch-num {
+      font-family: var(--f-serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400; font-style: italic;
+      color: var(--white); line-height: 1;
     }
-    .cap-title {
-      font-family: var(--f-display); font-size: 1.6rem; font-weight: 400;
-      color: var(--cream); line-height: 1.25; margin-bottom: 1rem;
+    .arch-info {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30); line-height: 1.9;
     }
-    .cap-date {
-      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--muted);
+    .arch-ext {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--w30);
+      text-decoration: none; border-bottom: 1px solid var(--w12);
+      padding-bottom: 1px; white-space: nowrap; transition: all .2s;
     }
-    .cap-vision {
-      font-size: 1.15rem; line-height: 1.95; color: rgba(245,240,232,.75);
-    }
-    .cap-vision em { font-style: italic; color: var(--cream); }
+    .arch-ext:hover { color: var(--white); border-color: var(--w60); }
 
-    /* ── DIVIDER ── */
-    .img-divider {
-      padding: 2rem 4rem;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 2rem;
-    }
-    .div-line { flex: 1; height: 1px; background: var(--border); }
-    .div-num {
-      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .2em;
-      color: var(--muted); text-transform: uppercase;
-    }
+    /* ── PHOTO GRID SYSTEM ── */
 
-    /* ── 2-COLUMN GRID ── */
-    .duo-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
-      margin: 0;
+    /* Full-bleed: no padding */
+    .g-full { position: relative; line-height: 0; }
+    .g-full img {
+      width: 100%; display: block;
+      filter: brightness(.96) contrast(1.04);
+      transition: filter .5s; cursor: zoom-in;
     }
-    .duo-item { position: relative; overflow: hidden; background: var(--panel); }
-    .duo-item img {
+    .g-full img:hover { filter: brightness(1) contrast(1.02); }
+
+    /* Grid container */
+    .g-row { display: grid; gap: var(--gap); line-height: 0; }
+    .g-row.c2 { grid-template-columns: 1fr 1fr; }
+    .g-row.c3 { grid-template-columns: 1fr 1fr 1fr; }
+    .g-row.c4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+    .g-row.c-6-4 { grid-template-columns: 6fr 4fr; }
+    .g-row.c-4-6 { grid-template-columns: 4fr 6fr; }
+    .g-row.c-5-5-3 { grid-template-columns: 5fr 5fr 3fr; }
+    .g-row.c-3-5-5 { grid-template-columns: 3fr 5fr 5fr; }
+
+    .g-cell { position: relative; overflow: hidden; background: var(--bg2); }
+    .g-cell img {
       width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(.88) contrast(1.1);
-      transition: all .5s ease;
-      aspect-ratio: 4/5;
+      filter: brightness(.95) contrast(1.04);
+      transition: filter .5s, transform .6s; cursor: zoom-in;
     }
-    .duo-item:hover img { filter: brightness(1) contrast(1.05); transform: scale(1.02); }
-    .duo-overlay {
+    .g-cell img:hover { filter: brightness(1) contrast(1.02); transform: scale(1.015); }
+    .g-cell.h-tall { min-height: 580px; }
+    .g-cell.h-reg  { min-height: 420px; }
+    .g-cell.h-sh   { min-height: 300px; }
+    .g-cell.h-sq   { aspect-ratio: 1/1; }
+    .g-cell.h-land { aspect-ratio: 3/2; }
+    .g-cell.h-port { aspect-ratio: 2/3; }
+
+    /* Photo note on hover */
+    .g-cell .note-overlay {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(5,4,3,.9) 0%, transparent 60%);
-      padding: 2rem 1.5rem 1.2rem;
-      transform: translateY(100%); transition: transform .35s ease;
+      padding: 1.5rem 1.2rem .9rem;
+      background: linear-gradient(transparent, rgba(8,8,8,.85));
+      transform: translateY(100%); transition: transform .3s ease;
     }
-    .duo-item:hover .duo-overlay { transform: translateY(0); }
-    .duo-overlay-arch {
-      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: .3rem;
+    .g-cell:hover .note-overlay { transform: none; }
+    .note-txt {
+      font-family: var(--f-mono); font-size: .56rem; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--w60);
     }
-    .duo-overlay-note { font-size: 1rem; color: var(--cream); line-height: 1.5; }
 
-    /* ── 3-COLUMN GRID ── */
-    .trio-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px;
-      margin: 0;
+    /* Caption row */
+    .arch-caption {
+      padding: 2rem 3rem 0;
+      max-width: 1080px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: start;
     }
-    .trio-item { position: relative; overflow: hidden; background: var(--panel); }
-    .trio-item img {
-      width: 100%; display: block; aspect-ratio: 2/3; object-fit: cover;
-      filter: brightness(.88) contrast(1.08);
-      transition: all .5s;
+    .cap-text {
+      font-size: .98rem; line-height: 1.8; color: var(--w30);
+      max-width: 540px;
     }
-    .trio-item:hover img { filter: brightness(1) contrast(1.05); transform: scale(1.03); }
-    .trio-overlay {
-      position: absolute; inset: 0;
-      background: rgba(5,4,3,.7);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 1.2rem;
-      opacity: 0; transition: opacity .3s;
+    .cap-text em { font-style: italic; color: var(--w60); }
+    .cap-count {
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--w12); white-space: nowrap; padding-top: .2rem;
     }
-    .trio-item:hover .trio-overlay { opacity: 1; }
-    .trio-arch {
-      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: .3rem;
-    }
-    .trio-note { font-size: .9rem; color: var(--cream); line-height: 1.45; }
 
-    /* ── WIDE + NARROW ── */
-    .split-wide {
-      display: grid; grid-template-columns: 1.7fr 1fr; gap: 3px; margin: 0;
-    }
-    .sw-item { position: relative; overflow: hidden; background: var(--panel); }
-    .sw-item img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: brightness(.88) contrast(1.1); transition: all .5s;
-      min-height: 500px;
-    }
-    .sw-item:hover img { filter: brightness(1); }
+    /* Bottom padding for section */
+    .arch-pad { height: 4rem; }
 
     /* ── PULL QUOTE ── */
-    .pull-quote-section {
-      padding: 6rem 4rem;
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+    .pull-quote {
+      padding: 8rem 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--w06);
     }
-    .pq-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+    .pq-wrap { max-width: 700px; margin: 0 auto; }
     .pq-mark {
-      font-family: var(--f-display); font-size: 8rem; line-height: .7;
-      color: rgba(201,168,76,.15); margin-bottom: -.5rem; display: block;
+      font-family: var(--f-serif); font-size: 6rem; line-height: .5;
+      color: var(--w06); display: block; margin-bottom: -.3rem;
     }
-    .pq-text {
-      font-family: var(--f-display); font-size: clamp(1.5rem, 3vw, 2.2rem);
-      font-style: italic; line-height: 1.5; color: var(--cream);
-      margin-bottom: 1.5rem;
+    .pq-q {
+      font-family: var(--f-serif); font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-style: italic; line-height: 1.55; color: var(--w90);
+      margin-bottom: 1.8rem;
     }
     .pq-by {
-      font-family: var(--f-mono); font-size: .65rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold);
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--w30);
     }
 
-    /* ── ARCHIVE LIST ── */
-    .archive-list {
-      padding: 5rem 4rem;
-      background: var(--night);
-      border-top: 1px solid var(--border);
+    /* ── INDEX TABLE ── */
+    .archive-index {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid var(--w06);
     }
-    .al-inner { max-width: 1100px; margin: 0 auto; }
-    .al-head {
-      font-family: var(--f-mono); font-size: .68rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 2.5rem;
+    .idx-wrap { max-width: 1080px; margin: 0 auto; }
+    .idx-head {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--w30); margin-bottom: 2.5rem;
     }
-    .al-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1px; border: 1px solid var(--border);
+    .idx-table { width: 100%; border-collapse: collapse; }
+    .idx-table tr { border-bottom: 1px solid var(--w06); }
+    .idx-table tr:first-child { border-top: 1px solid var(--w06); }
+    .idx-table tr:hover td { color: var(--white); }
+    .idx-table tr:hover .idx-arr { opacity: 1; transform: translateX(0); }
+    .idx-table td {
+      padding: 1.1rem 0; transition: color .15s;
+      cursor: pointer;
     }
-    .al-item {
-      padding: 1.4rem 1.8rem;
-      border: 1px solid var(--border);
-      text-decoration: none;
-      transition: background .2s;
-      display: flex; flex-direction: column; gap: .3rem;
+    .idx-num {
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30);
+      width: 120px; padding-right: 2rem !important;
     }
-    .al-item:hover { background: rgba(201,168,76,.05); }
-    .al-num {
-      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--gold);
+    .idx-title {
+      font-family: var(--f-body); font-size: 1rem; color: var(--w60);
     }
-    .al-title { font-family: var(--f-body); font-size: 1rem; color: var(--cream); }
-    .al-date { font-family: var(--f-mono); font-size: .58rem; color: var(--muted); }
+    .idx-date {
+      font-family: var(--f-mono); font-size: .57rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--w30);
+      text-align: right; padding-left: 2rem !important;
+    }
+    .idx-arr {
+      font-family: var(--f-mono); font-size: .65rem; color: var(--w30);
+      opacity: 0; transform: translateX(-5px); transition: all .2s;
+      padding-left: 1rem !important; width: 30px;
+    }
 
     /* ── CTA ── */
     .cta-section {
-      padding: 7rem 4rem;
+      padding: 7rem 3rem;
       text-align: center;
-      background: var(--black);
     }
-    .cta-label {
-      font-family: var(--f-mono); font-size: .68rem; letter-spacing: .2em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem;
+    .cta-tag {
+      font-family: var(--f-mono); font-size: .58rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--w30); margin-bottom: 1.6rem;
     }
     .cta-h {
-      font-family: var(--f-display); font-size: clamp(1.8rem, 4vw, 3rem);
-      font-weight: 400; color: var(--cream); margin-bottom: 2.5rem; line-height: 1.2;
+      font-family: var(--f-serif); font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400; color: var(--white); margin-bottom: 2.5rem; line-height: 1.15;
     }
-    .cta-h em { font-style: italic; }
-    .cta-link {
+    .cta-h em { font-style: italic; color: var(--w60); }
+    .cta-btn {
       display: inline-block;
-      font-family: var(--f-mono); font-size: .72rem; letter-spacing: .15em;
+      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .18em;
       text-transform: uppercase; text-decoration: none;
-      color: var(--black); background: var(--gold);
-      padding: 1rem 2.5rem;
-      transition: all .25s;
+      border: 1px solid var(--w30); color: var(--white);
+      padding: .9rem 2.4rem; transition: all .25s;
     }
-    .cta-link:hover { background: var(--cream); }
+    .cta-btn:hover { background: var(--white); color: var(--bg); border-color: var(--white); }
 
     /* ── FOOTER ── */
     footer {
-      padding: 2.5rem 4rem;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--w06);
+      padding: 2rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      font-family: var(--f-mono); font-size: .62rem; letter-spacing: .12em;
-      text-transform: uppercase; color: var(--muted); flex-wrap: wrap; gap: 1rem;
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--w30); flex-wrap: wrap; gap: 1rem;
     }
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--gold); }
+    footer a { color: var(--w30); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--white); }
 
-    /* ── REVEAL ANIMATIONS ── */
+    /* ── LIGHTBOX ── */
+    .lb {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(5,5,5,.98);
+      display: none; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+      cursor: zoom-out;
+    }
+    .lb.open { display: flex; }
+    .lb-img {
+      max-width: min(90vw, 960px);
+      max-height: 85vh; object-fit: contain;
+    }
+    .lb-cap {
+      font-family: var(--f-mono); font-size: .55rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--w30); text-align: center;
+    }
+    .lb-x {
+      position: absolute; top: 1.5rem; right: 2rem;
+      font-family: var(--f-mono); font-size: .6rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--w30); cursor: pointer; transition: color .2s;
+    }
+    .lb-x:hover { color: var(--white); }
+    .lb-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.2rem; color: var(--w30); cursor: pointer;
+      padding: 1.2rem; transition: color .2s; user-select: none;
+    }
+    .lb-arrow:hover { color: var(--white); }
+    .lb-prev { left: 1rem; }
+    .lb-next { right: 1rem; }
+
+    /* ── REVEAL ── */
     .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .8s ease, transform .8s ease;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .7s ease, transform .7s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
 
-    /* ── LIGHTBOX ── */
-    .lightbox {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(5,4,3,.97);
-      display: none; align-items: center; justify-content: center;
-      flex-direction: column; gap: 1.5rem;
-      cursor: zoom-out;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox img {
-      max-width: 88vw; max-height: 84vh; object-fit: contain;
-      box-shadow: 0 0 80px rgba(0,0,0,.8);
-    }
-    .lb-caption {
-      font-family: var(--f-mono); font-size: .65rem; letter-spacing: .15em;
-      text-transform: uppercase; color: var(--muted); text-align: center;
-    }
-    .lb-close {
-      position: absolute; top: 2rem; right: 2.5rem;
-      font-family: var(--f-mono); font-size: .7rem; color: var(--muted);
-      cursor: pointer; letter-spacing: .12em;
-      transition: color .2s;
-    }
-    .lb-close:hover { color: var(--cream); }
-
     /* ── RESPONSIVE ── */
-    @media(max-width: 900px) {
-      nav { padding: 1rem 1.5rem; }
-      .hero-content { padding: 0 1.5rem 4rem; }
-      .hero-scroll { right: 1.5rem; }
+    @media (max-width: 820px) {
+      nav { padding: 0 1.2rem; }
+      .nav-brand { display: none; }
+      .hero-content { padding: 0 1.5rem 3.5rem; }
+      .scroll-cue { right: 1.5rem; }
       .statement { padding: 5rem 1.5rem; }
-      .statement-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .counter-strip { padding: 2.5rem 1.5rem; }
-      .section-intro { padding: 4rem 1.5rem 2rem; }
-      .caption-block { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.5rem; }
-      .img-divider { padding: 1.5rem; }
-      .duo-grid, .split-wide { grid-template-columns: 1fr; }
-      .trio-grid { grid-template-columns: repeat(2, 1fr); }
-      .pull-quote-section { padding: 4rem 1.5rem; }
-      .archive-list { padding: 4rem 1.5rem; }
+      .stmt-wrap { grid-template-columns: 1fr; gap: 3rem; }
+      .stmt-sidebar { position: static; }
+      .count-bar { padding: 2rem 1.5rem; }
+      .arch-header { padding: 3.5rem 1.5rem 1.5rem; }
+      .arch-caption { padding: 1.2rem 1.5rem 0; flex-direction: column; gap: .5rem; }
+      .g-row.c2, .g-row.c3, .g-row.c4,
+      .g-row.c-6-4, .g-row.c-4-6,
+      .g-row.c-5-5-3, .g-row.c-3-5-5 { grid-template-columns: 1fr; }
+      .g-cell.h-tall, .g-cell.h-reg { min-height: 280px; }
+      .pull-quote { padding: 5rem 1.5rem; }
+      .archive-index { padding: 4rem 1.5rem; }
+      .idx-date, .idx-arr { display: none; }
+      .idx-num { width: 90px; }
       .cta-section { padding: 5rem 1.5rem; }
-      footer { padding: 2rem 1.5rem; }
+      footer { padding: 1.8rem 1.5rem; flex-direction: column; align-items: start; }
     }
-
-    /* Clickable images */
-    .clickable { cursor: zoom-in; }
   </style>
 </head>
 <body>
@@ -461,472 +455,947 @@
 <!-- NAV -->
 <nav>
   <a href="../index.html" class="nav-back">← Studiolo</a>
-  <a href="../index.html" class="nav-logo">Jeevan Kumar</a>
-  <a href="https://studies-of-natural-history.tumblr.com" target="_blank" class="nav-tumblr">Full Archive ↗</a>
+  <a href="../index.html" class="nav-brand">Jeevan Kumar</a>
+  <a href="https://studies-of-natural-history.tumblr.com" target="_blank" class="nav-cta">Archive ↗</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-img"></div>
-  <div class="hero-vignette"></div>
+  <div class="hero-veil"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">Original Work · Ongoing Series</div>
-    <h1 class="hero-title">Bus Ride<br><em>Photographs</em><br>Archive</h1>
+    <div class="hero-tag">Original work · Ongoing · 2026 –</div>
+    <h1 class="hero-h">Bus Ride<br><em>Photographs</em><br>Archive</h1>
     <div class="hero-meta">
-      <span>Bengaluru, India</span>
-      <span>Archive I – XVIII+</span>
+      <span>Bengaluru</span>
+      <i></i>
+      <span>Archive I – XXXV</span>
+      <i></i>
       <span>Black & White</span>
-      <span>2026 –</span>
     </div>
   </div>
-  <div class="hero-scroll">Scroll</div>
+  <div class="scroll-cue">Scroll</div>
 </section>
 
-<!-- ARTIST STATEMENT -->
-<section class="statement">
-  <div class="statement-inner">
-    <div class="stmt-left">
-      <div class="stmt-label">On the Series</div>
+<!-- STATEMENT -->
+<section class="statement reveal">
+  <div class="stmt-wrap">
+    <div class="stmt-sidebar">
+      <div class="stmt-tag">On the Series</div>
       <h2 class="stmt-h">Beauty from<br>the <em>Mundane</em><br>& Ordinary</h2>
-      <div class="stmt-number">I–XVIII</div>
+      <div class="stmt-rule"></div>
+      <div class="stmt-meta">
+        Archive I – XXXV<br>
+        Bengaluru<br>
+        Black & White<br>
+        2026 – Ongoing
+      </div>
     </div>
     <div class="stmt-body">
-      <p class="stmt-p">
-        This series began without intention. The route between ICTS and NCBS — two research institutes on opposite ends of Bengaluru — takes roughly forty minutes by bus. I began photographing through the window to pass the time. I have not stopped.
-      </p>
-
-      <div class="stmt-quote">
-        "Each photograph captures a moment. No matter whether it's blurry or in focus, it reveals a depth beneath the surface — layers beneath what was considered ordinary."
-      </div>
-
-      <p class="stmt-p">
-        Here in these streets, life unfolds in all of its nuances. A vendor mid-gesture. A tree pushing through concrete. A figure caught between one step and the next. These are not exceptional moments — that is precisely the point. The series is a sustained argument that <em>beauty can arise from the mundane and the ordinary</em>, that the unremarkable street, seen with enough attention and patience, contains depths that reward looking.
-      </p>
-      <p class="stmt-p">
-        The blurriness is not failure. Blur is what motion looks like. An out-of-focus image is not a mistake — it is what it means to be moving through a moving city, trying to fix one moment in a stream of moments that have no intention of stopping for you. I have come to prefer the images where the camera's mechanical eye and the city's indifference to being watched produce something together: a collaboration between intention and accident.
-      </p>
-      <p class="stmt-p">
-        The name of the parent blog — <em>Studies of Natural History</em> — is not accidental. These are field notes. The specimen is Bengaluru. The observer is in motion. Black and white removes the distraction of colour and asks: what is actually happening here? What is the quality of the light? The posture of the body? The relationship between this person and this street, right now, at this speed?
-      </p>
-      <p class="stmt-p">
-        Each archive is one journey. The photographs are numbered but not curated — they are a chronology, not a selection. The discipline is entirely in the shooting.
-      </p>
+      <p class="stmt-p">This series began without intention. The route between ICTS and NCBS — two research institutes on opposite ends of Bengaluru — takes roughly forty minutes by bus. I began photographing through the window to pass the time. I have not stopped.</p>
+      <div class="stmt-blockquote">"Each photograph captures a moment. No matter whether it's blurry or in focus, it reveals a depth beneath the surface — layers beneath what was considered ordinary."</div>
+      <p class="stmt-p">Here in these streets, life unfolds in all of its nuances. A vendor mid-gesture. A tree pushing through concrete. A figure caught between one step and the next. These are not exceptional moments — that is precisely the point. The series is a sustained argument that <em>beauty can arise from the mundane and the ordinary</em>.</p>
+      <p class="stmt-p">The blurriness is not failure. Blur is what motion looks like. An out-of-focus image is not a mistake — it is what it means to be moving through a moving city, trying to fix one moment in a stream of moments that have no intention of stopping for you.</p>
+      <p class="stmt-p">The name of the parent blog — <em>Studies of Natural History</em> — is not accidental. These are field notes. The specimen is Bengaluru. The observer is in motion. Black and white removes the distraction of colour. Each archive is one journey. The photographs are not curated — they are a chronology. The discipline is entirely in the shooting.</p>
     </div>
   </div>
 </section>
 
-<!-- COUNTER -->
-<div class="counter-strip">
-  <div class="counter-inner">
-    <div class="counter-item">
-      <span class="c-num">18+</span>
-      <span class="c-label">Archives</span>
+<!-- COUNT BAR -->
+<div class="count-bar">
+  <div class="count-wrap">
+    <div class="c-item"><span class="c-n">35</span><span class="c-l">Archives</span></div>
+    <div class="c-item"><span class="c-n">250+</span><span class="c-l">Photographs</span></div>
+    <div class="c-item"><span class="c-n">B&W</span><span class="c-l">Only</span></div>
+    <div class="c-item"><span class="c-n">2026</span><span class="c-l">Ongoing</span></div>
+  </div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XXXV ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXXV</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>17.03.2026</div>
     </div>
-    <div class="counter-divider"></div>
-    <div class="counter-item">
-      <span class="c-num">150+</span>
-      <span class="c-label">Photographs</span>
+    <a href="https://studies-of-natural-history.tumblr.com/post/811302196277837825" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/d4b91ea6106b01145d1eeea595ceb5d0/b7d531f2479fe9de-73/s1280x1920/fdba081f0efcf37d50d7d5c492129450e4791479.jpg"
+      alt="Archive XXXV — i" loading="lazy"
+      onclick="lb(this.src,'Archive XXXV · i · NCBS to ICTS · 17.03.2026')">
+  </div>
+
+  <div class="g-row c3 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/89957584666abfe4cdceb432641b25b2/b7d531f2479fe9de-4c/s1280x1920/f6496f038a746b16a147b0200acdade457cc1108.jpg"
+        alt="Archive XXXV — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · ii · 17.03.2026')">
     </div>
-    <div class="counter-divider"></div>
-    <div class="counter-item">
-      <span class="c-num">B&W</span>
-      <span class="c-label">Only</span>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/0aa67f3b8cb2b17b191e30f8f2bcc35b/b7d531f2479fe9de-4f/s1280x1920/67ce7d07ce754ab3d05a55fbc50dae57766e494b.jpg"
+        alt="Archive XXXV — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · iii · 17.03.2026')">
     </div>
-    <div class="counter-divider"></div>
-    <div class="counter-item">
-      <span class="c-num">2026</span>
-      <span class="c-label">Ongoing</span>
-    </div>
-  </div>
-</div>
-
-<!-- SELECTED WORKS -->
-<div class="section-intro reveal">
-  <div class="sec-eyebrow">Selected Works</div>
-  <h2 class="sec-h">Chosen Images<br>from the Archive</h2>
-</div>
-
-<!-- ── ARCHIVE VII: THE PHILOSOPHY ARCHIVE ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive VII · NCBS to ICTS · 21.02.2026 · The Philosophy Archive</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="full-bleed reveal">
-  <img class="clickable"
-    src="https://64.media.tumblr.com/b1e5b6a3aafba67687910fa4f1bef021/df0d013a9bc1fd6f-7a/s2048x3072/341cfef55c1c12cf4fa6befb154beaf234464770.jpg"
-    alt="Archive VII — Layers beneath the ordinary"
-    loading="lazy"
-    onclick="openLightbox(this.src, 'Archive VII · NCBS to ICTS · 21.02.2026')">
-</div>
-
-<div class="caption-block reveal" style="background: rgba(201,168,76,.03); border-bottom: 1px solid rgba(201,168,76,.12);">
-  <div class="cap-meta">
-    <div class="cap-archive" style="font-size:.78rem;">Archive VII<br><span style="color:var(--muted); font-size:.6rem; letter-spacing:.1em;">The Statement Archive</span></div>
-    <h3 class="cap-title">Layers Beneath<br>the Ordinary</h3>
-    <div class="cap-date">NCBS to ICTS · 21.02.2026</div>
-  </div>
-  <div class="cap-vision">
-    Archive 7 was the point at which the series declared itself. Until then, the photographs were accumulating without a name for what they were doing. Here, writing about this archive, the philosophy of the whole project became clear: <em>each photograph captures a moment — no matter whether blurry or in focus, it reveals a depth beneath the surface, layers beneath what was considered ordinary.</em>
-    <br><br>
-    Here in these streets, life unfolds in all its nuances. Not the Bengaluru of brochures or tech-campus mythology — the Bengaluru of the actual street, which has been unfolding this way for decades before any camera arrived to notice it. The series is a sustained act of noticing. Beauty is not imported into the mundane. It is uncovered there.
-  </div>
-</div>
-
-<!-- ── IMAGE 01: FULL BLEED ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XV · ICTS, Bengaluru · 01.03.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="full-bleed reveal">
-  <img class="clickable"
-    src="https://64.media.tumblr.com/d9175d08abd1fe6893e745c945f67b19524f4dad/9c66933edd34ef97-81/s1280x1920/d9175d08abd1fe6893e745c945f67b19524f4dad.jpg"
-    alt="Archive 15 — The Crossing"
-    loading="lazy"
-    onclick="openLightbox(this.src, 'Archive XV · ICTS, Bengaluru · 01.03.2026')">
-</div>
-
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XV</div>
-    <h3 class="cap-title">The Crossing</h3>
-    <div class="cap-date">ICTS, Bengaluru · 01.03.2026</div>
-  </div>
-  <div class="cap-vision">
-    The bus held at this crossing long enough to compose. It is the closest I have come to a planned photograph in this series — everything else is pure reaction. What I notice in retrospect is how the geometry arranged itself without my instruction: the vertical of the tree, the horizontal of the road marking, the diagonal implied by the figures' movement. The city provided the composition. I merely decided when.
-  </div>
-</div>
-
-<!-- ── IMAGE 02: FULL BLEED ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XVIII · ICTS, Bengaluru · 05.03.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="full-bleed reveal">
-  <img class="clickable"
-    src="https://64.media.tumblr.com/6a9cca535ce7510cc018d9e498096def/5cf84f4a80316c43-77/s1280x1920/035c757dbfd6bd5b713f8edb701a29dbe6c11ac3.jpg"
-    alt="Archive 18 — Midday Light"
-    loading="lazy"
-    onclick="openLightbox(this.src, 'Archive XVIII · ICTS, Bengaluru · 05.03.2026')">
-</div>
-
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XVIII</div>
-    <h3 class="cap-title">Midday Dust</h3>
-    <div class="cap-date">ICTS, Bengaluru · 05.03.2026</div>
-  </div>
-  <div class="cap-vision">
-    Shot at a signal stop — the rare moment when the city holds its breath between movements. Midday light through dust and glass flattens everything into near-equal grey tones. No hierarchy of subject. The street and the sky are equally present, which is the truth about how Bengaluru looks at noon: everything bleached to the same luminous grey.
-  </div>
-</div>
-
-<!-- ── DUO GRID: Archives 17 ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XVII · ICTS to NCBS · 05.03.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="duo-grid reveal">
-  <div class="duo-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/4777eb0e27166f3ce22c8b613dc3fcd8/80c33e3d91f94380-ad/s1280x1920/01d786a897863ded38012885f51ecb79bda88210.jpg"
-      alt="Archive 17 — Threshold"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XVII — Threshold')">
-    <div class="duo-overlay">
-      <div class="duo-overlay-arch">Archive XVII · i</div>
-      <div class="duo-overlay-note">Threshold — the figure at the edge of the frame, partly seen</div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/5fc6f7ef92bcb336e69a06ce9c613219/b7d531f2479fe9de-d5/s1280x1920/c5327a57afc3d9b5678a171ee7819f460a52a611.jpg"
+        alt="Archive XXXV — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · iv · 17.03.2026')">
     </div>
   </div>
-  <div class="duo-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/0bfb9afc844c9a88686f425111b917b6/80c33e3d91f94380-08/s1280x1920/61ac99de0e19ab2673f2c4e92b6a5f8296217a7a.jpg"
-      alt="Archive 17 — Light through dirty glass"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XVII — Light through dirty glass')">
-    <div class="duo-overlay">
-      <div class="duo-overlay-arch">Archive XVII · ii</div>
-      <div class="duo-overlay-note">Light fracturing through the glass — I did not clean the window</div>
+
+  <div class="g-row c-6-4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/9e8f1a0ee6feb1f19413a8397eba89d2/b7d531f2479fe9de-3e/s1280x1920/6cb62491f502e37a55e5bb0db14fb8adb42d49da.jpg"
+        alt="Archive XXXV — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · v · 17.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/b985936ae14ceeab1ccaff0982fa744f/b7d531f2479fe9de-67/s1280x1920/ed5866ff7d58dbc7eb4498cd146580b34bb760e9.jpg"
+        alt="Archive XXXV — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · vi · 17.03.2026')">
     </div>
   </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/8ec1aab7f09ded6d967f2a8556b2103d/b7d531f2479fe9de-b7/s1280x1920/e4fdda1dffe67b2136cd184d0736196ecc13a806.jpg"
+        alt="Archive XXXV — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · vii · 17.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/c9958277505415efe6f0690533fa5bb5/b7d531f2479fe9de-4b/s1280x1920/f0b29bb27c8e0d38976bb5addceebaa1b78fd8e2.jpg"
+        alt="Archive XXXV — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXV · viii · 17.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Today's archive. NCBS to ICTS — the light different again from yesterday, the route the same.</div>
+    <div class="cap-count">8 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
 </div>
 
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XVII</div>
-    <h3 class="cap-title">Threshold &<br>Dirty Glass</h3>
-    <div class="cap-date">ICTS to NCBS · 05.03.2026</div>
+
+<!-- ═══════ ARCHIVE XXXIV ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXXIV</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>16.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/811213442126118912" target="_blank" class="arch-ext">View ↗</a>
   </div>
-  <div class="cap-vision">
-    <em>Left:</em> A figure at the edge of the frame — partly seen, partly lost to motion blur. The indeterminacy is the point. Most street photography tries to capture the subject fully. I am interested in the threshold between presence and absence: the moment before the bus carries the figure out of frame, and the subject is simultaneously here and already gone.
-    <br><br>
-    <em>Right:</em> Light fracturing through the glass at an angle that turns an ordinary street into something geological — layers of grey, like strata. The bus window was dirty. I did not clean it. The grime is part of the image, part of the honesty of the method.
+
+  <div class="g-row c-4-6 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/eb9cac7cfaf4ad0f994a8b0cdcea369d/db69b03674993de7-00/s1280x1920/949c7642b737f4c13e24f35b00221f7dfa529048.jpg"
+        alt="Archive XXXIV — i" loading="lazy"
+        onclick="lb(this.src,'Archive XXXIV · i · 16.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/5c97ea8ce13ad330e20f8d10cf3a4183/db69b03674993de7-cb/s1280x1920/0e1256a78df767ef407c98b41875db43e8f0f7f2.jpg"
+        alt="Archive XXXIV — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXIV · ii · 16.03.2026')">
+    </div>
   </div>
+
+  <div class="g-row c3 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/e7f9a3a5a61c4454faf51f5feef14127/db69b03674993de7-33/s1280x1920/93f6285f2f22da1c75e137cfc4301ac71f44e924.jpg"
+        alt="Archive XXXIV — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXXIV · iii · 16.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/22e92f9ace532519bb8123168cfcfd30/db69b03674993de7-89/s1280x1920/1f3285c4a1f7704d7f8df4e5f4bd70f3e5a032a7.jpg"
+        alt="Archive XXXIV — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXXIV · iv · 16.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/2b85a1565048734712a6affe870af331/db69b03674993de7-e6/s1280x1920/2fc320474aef67fad4cbf2450b7da726d6e5d078.jpg"
+        alt="Archive XXXIV — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXXIV · v · 16.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-full reveal" style="margin-top:var(--gap);">
+    <img src="https://64.media.tumblr.com/59aaaecd015a30fb18c45445c8c25e62/db69b03674993de7-14/s1280x1920/0b6518c9a0929f5023564739ade2f2af3b1c1a46.jpg"
+      alt="Archive XXXIV — vi" loading="lazy"
+      onclick="lb(this.src,'Archive XXXIV · vi · 16.03.2026')">
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Six photographs from the previous day's journey. The route NCBS to ICTS — the same buildings, different light.</div>
+    <div class="cap-count">6 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
 </div>
 
-<!-- ── PULL QUOTE ── -->
-<div class="pull-quote-section reveal">
-  <div class="pq-inner">
+
+<!-- ═══════ ARCHIVE XXX ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXX</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>12.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810870594799370240" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c-5-5-3 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/bf4a3c25bd0d50a1b0ef98d50d84b120/bcb3f7346b0d6b0a-43/s1280x1920/f17ad7a9336535ec712a54ba80387b33b9354c0d.jpg"
+        alt="Archive XXX — i" loading="lazy"
+        onclick="lb(this.src,'Archive XXX · i · 12.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/a326944e0cdf1617d0afeeb7295771f1/bcb3f7346b0d6b0a-ca/s1280x1920/ba7ee73a90b3c41fb5feca2cd8957e0eb0fbbe11.jpg"
+        alt="Archive XXX — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXX · ii · 12.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/beccfce7554dce4d72abc2b042fb7deb/bcb3f7346b0d6b0a-7a/s1280x1920/e7dd438b3beae63320facaea8af235fc3eec3d10.jpg"
+        alt="Archive XXX — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXX · iii · 12.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/a10a3c972b39ec0e01003910688c3095/bcb3f7346b0d6b0a-c9/s1280x1920/c448c067d23fccd2853bcdf5f99942579b5013ff.jpg"
+        alt="Archive XXX — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXX · iv · 12.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/50856d7e5285ef4e34c8f7406430b612/bcb3f7346b0d6b0a-2c/s1280x1920/11065e297589eae9098448348f3a543b6de4d670.jpg"
+        alt="Archive XXX — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXX · v · 12.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-count">5 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVES XXVIII – XXIX (placeholder) ═══════ -->
+
+
+<!-- ═══════ ARCHIVE XXVII ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXVII</div>
+      <div class="arch-info">ICTS to NCBS, Bengaluru<br>08.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810514768404381696" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/83823788700585e231e0ec4f6a1ac715/22c5bf020f6bffaa-49/s1280x1920/3669caa0e532f13cf2e29374f5985b3758b04b7e.jpg"
+      alt="Archive XXVII — i" loading="lazy"
+      onclick="lb(this.src,'Archive XXVII · i · ICTS to NCBS · 08.03.2026')">
+  </div>
+
+  <div class="g-row c4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/da736f6f2476f42134facbca60e2f789/22c5bf020f6bffaa-02/s1280x1920/8ea7b6267461d8be497f721547a99c824554cb9a.jpg"
+        alt="Archive XXVII — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · ii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/dd78b35c3833831f44961ab3e47adb04/22c5bf020f6bffaa-28/s1280x1920/9bad68f2c99e647eb19ec1a5ba8c4ec0b0b38673.jpg"
+        alt="Archive XXVII — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · iii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/13c4da2140266237e44161aea7e13d86/22c5bf020f6bffaa-b2/s1280x1920/40c9e2558003dafb8f3ae18571b6cde194e237d3.jpg"
+        alt="Archive XXVII — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · iv · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/8b12eca25d3c9152106866f3c8b4f26f/22c5bf020f6bffaa-bd/s1280x1920/2837ef16faf2e707f6d830345cf20407c372b821.jpg"
+        alt="Archive XXVII — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · v · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c-3-5-5 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/079910e5974f774596347cb4cc052f24/22c5bf020f6bffaa-7c/s1280x1920/f764105d09782a4ab1701b877a74a498dd079b5e.jpg"
+        alt="Archive XXVII — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · vi · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/64751089a445c8ef5879f75a94b08cbe/22c5bf020f6bffaa-40/s1280x1920/a0ab46cd77366fdb745f72ffbf185e70997e369f.jpg"
+        alt="Archive XXVII — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · vii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/59930d35ed85e33b43cbd8d2845f67b2/22c5bf020f6bffaa-a5/s1280x1920/14737e2ba44749cc11715cabac5c9a30d3406994.jpg"
+        alt="Archive XXVII — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · viii · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/21297754a9c606c21ee4a1caf5263641/22c5bf020f6bffaa-8c/s1280x1920/c522bf591f9b76a833b8244506623b7303c78c59.jpg"
+        alt="Archive XXVII — ix" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · ix · 08.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/1ab6fef5cfad450f23b06caf3947fd2c/22c5bf020f6bffaa-28/s1280x1920/5b9369c418726ebfea4768d945659d7fb6bc364b.jpg"
+        alt="Archive XXVII — x" loading="lazy"
+        onclick="lb(this.src,'Archive XXVII · x · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Ten photographs from a single crossing. The city mid-gesture — neither arriving nor departed.</div>
+    <div class="cap-count">10 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XXVI ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXVI</div>
+      <div class="arch-info">ICTS to NCBS, Bengaluru<br>08.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810514726399377408" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c2 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/883d222fbfc3c9f17063f65c343806c9/d43aa345dcbfeb9e-7c/s1280x1920/1b948f81a1016ea740cf12e0857ad031dcde0fd4.jpg"
+        alt="Archive XXVI — i" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · i · 08.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/add2f25a83b2271e2e13949c3351f175/d43aa345dcbfeb9e-3f/s1280x1920/8612108e3ceea968070486bd67602b67a2dfc08f.jpg"
+        alt="Archive XXVI — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · ii · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/af0b3f8deaa22de9aae40f449793f70c/d43aa345dcbfeb9e-80/s1280x1920/cd0852462a30b1075cad94013672eadeb629d59c.jpg"
+        alt="Archive XXVI — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · iii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/1ee138347ac386763e3d8858180d8b57/d43aa345dcbfeb9e-05/s1280x1920/97f199683c571bbd9dcee29f648090397aac57b8.jpg"
+        alt="Archive XXVI — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · iv · 08.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/d29a9ad3a88febdf2804ff3b39c669f2/d43aa345dcbfeb9e-f5/s1280x1920/82472b86a37ce8b762e6e5df64af06c8f98ea198.jpg"
+        alt="Archive XXVI — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · v · 08.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/01fca8d7abd144dc74c8d50526f60b72/d43aa345dcbfeb9e-ac/s1280x1920/9223db5fd5e2fce1bc0d5b31a52d6ee12a6ee37e.jpg"
+        alt="Archive XXVI — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · vi · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c-6-4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/612c4efd1115243f250ce3e9022b886b/d43aa345dcbfeb9e-80/s1280x1920/cca15e5f5eda4b670697a8305b958ad36673afac.jpg"
+        alt="Archive XXVI — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · vii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/6b61fec32f9b4cf83a9a6fb5f4e7cac3/d43aa345dcbfeb9e-c8/s1280x1920/4da0770a54b6c211040ffc8f750c1d0250972b34.jpg"
+        alt="Archive XXVI — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · viii · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/bad8051731b3ec48f411a94a81df3713/d43aa345dcbfeb9e-c5/s1280x1920/c065d722fc144f715a6ef90b6b246ea2167d5fef.jpg"
+        alt="Archive XXVI — ix" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · ix · 08.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/43848af688f5e1eddf73000b8ddecba4/d43aa345dcbfeb9e-7d/s1280x1920/25561d1c911a16621d876f40ad4561ff194c0895.jpg"
+        alt="Archive XXVI — x" loading="lazy"
+        onclick="lb(this.src,'Archive XXVI · x · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-count">10 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XXV ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XXV</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>08.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810496062792105984" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c-5-5-3 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/3424c19438a7aa63897de19f2afb845e/27c0db1249bee3aa-ff/s1280x1920/38809061141455419b4a1a90654922320e8caa14.jpg"
+        alt="Archive XXV — i" loading="lazy"
+        onclick="lb(this.src,'Archive XXV · i · 08.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/ea6942aeb452e90d951d3776a005cd08/27c0db1249bee3aa-20/s1280x1920/a700fd02f293aa65caa00c5a6e5006ab9c98af16.jpg"
+        alt="Archive XXV — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XXV · ii · 08.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/35253a42d4e5485f211d310c128eb767/27c0db1249bee3aa-0e/s1280x1920/1905923a69f305ef830680dff38c8f68c6442526.jpg"
+        alt="Archive XXV — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XXV · iii · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/c2584004bd462091f8b20624c5799b7b/27c0db1249bee3aa-b9/s1280x1920/4b22e9afc27633b7fd9cb547db17e438ab927017.jpg"
+        alt="Archive XXV — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XXV · iv · 08.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/a7f6bec19b386b52db01c55c2cf92bc9/27c0db1249bee3aa-23/s1280x1920/a7ba9e0c3e624bd356e6af3e649d6b575f8ee99b.jpg"
+        alt="Archive XXV — v" loading="lazy"
+        onclick="lb(this.src,'Archive XXV · v · 08.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-count">5+ photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ PULL QUOTE ═══════ -->
+<div class="pull-quote reveal">
+  <div class="pq-wrap">
     <span class="pq-mark">"</span>
-    <p class="pq-text">No matter whether it's blurry or in focus, it reveals a depth beneath the surface — layers beneath what was considered ordinary.</p>
-    <div class="pq-by">— Jeevan Kumar · Archive VII · Bus Ride Photographs Archive</div>
+    <p class="pq-q">No matter whether it's blurry or in focus, it reveals a depth beneath the surface — layers beneath what was considered ordinary.</p>
+    <div class="pq-by">— Jeevan Kumar · Archive VII · The Statement Archive</div>
   </div>
 </div>
 
-<!-- ── SPLIT: Archive 16 ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XVI · NCBS to ICTS · 03.03.2026</div>
-  <div class="div-line"></div>
-</div>
 
-<div class="split-wide reveal">
-  <div class="sw-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/7b2fe69d3b9b6227834241f6cc50feda/288ee9b89670793b-f5/s1280x1920/a900d016613c08be6b91642a15e60219f388b602.jpg"
-      alt="Archive 16 — Garden City surviving"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XVI — Garden City, surviving')">
+<!-- ═══════ ARCHIVE XVIII ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XVIII</div>
+      <div class="arch-info">ICTS, Bengaluru<br>05.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810269622539550721" target="_blank" class="arch-ext">View ↗</a>
   </div>
-  <div class="sw-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/06f1ed5cb55980a95f144fa3e138a057/288ee9b89670793b-8e/s1280x1920/987efc2860a892e097d895d2bd1cb4c28516aa22.jpg"
-      alt="Archive 16"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XVI · NCBS to ICTS · 03.03.2026')">
-  </div>
-</div>
 
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XVI</div>
-    <h3 class="cap-title">Garden City,<br>Surviving</h3>
-    <div class="cap-date">NCBS to ICTS · 03.03.2026</div>
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/6a9cca535ce7510cc018d9e498096def/5cf84f4a80316c43-77/s1280x1920/035c757dbfd6bd5b713f8edb701a29dbe6c11ac3.jpg"
+      alt="Archive XVIII — i" loading="lazy"
+      onclick="lb(this.src,'Archive XVIII · i · ICTS · 05.03.2026')">
   </div>
-  <div class="cap-vision">
-    Bengaluru was once called the Garden City. Trees surviving between concrete are what remains of that description — insistent green things pushing through wherever they are permitted to persist. I am drawn to this tension in the city: the organic and the built, neither winning. In black and white, the tree and the building become equally grey, equally substantial. The photograph refuses to decide which matters more.
-  </div>
-</div>
 
-<!-- ── TRIO: Archive 13 ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XIII · NCBS to ICTS · 26.02.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="trio-grid reveal">
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/6a43037a46beb71288dfd181f2378af8/96d4949ab2f6cd9d-2f/s1280x1920/5d3a3da0b1dae9c9357c6d07f7bc31091d883d8c.jpg"
-      alt="Archive 13 — i"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XIII · i')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XIII · i</div>
-      <div class="trio-note">Motion blur at the edges — honest rendering of perception</div>
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/986aa629b017fc236a9589139ae0227f/5cf84f4a80316c43-25/s1280x1920/1ef42a50514bb6f14d076a15fa59f7fc561fa35e.jpg"
+        alt="Archive XVIII — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XVIII · ii · 05.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/5203b391198a8ee1b7c129bbdad0251b/5cf84f4a80316c43-96/s1280x1920/1441812479106908f87526c7dddafcd3901b62c4.jpg"
+        alt="Archive XVIII — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XVIII · iii · 05.03.2026')">
     </div>
   </div>
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/76823d2eec9c55c6b342d7157a5242d5/96d4949ab2f6cd9d-56/s1280x1920/d5e311fd8f7e9c1a4679548dea8150d8d68dd840.jpg"
-      alt="Archive 13 — ii"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XIII · ii')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XIII · ii</div>
-      <div class="trio-note">Near and far, collapsed by glass into one surface</div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Midday light through dust and glass. No hierarchy of subject — the street and the sky equally present, everything bleached to the same luminous grey.</div>
+    <div class="cap-count">3 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XVII ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XVII</div>
+      <div class="arch-info">ICTS to NCBS, Bengaluru<br>05.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810269554758582272" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c-4-6 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/4777eb0e27166f3ce22c8b613dc3fcd8/80c33e3d91f94380-ad/s1280x1920/01d786a897863ded38012885f51ecb79bda88210.jpg"
+        alt="Archive XVII — i" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · i · 05.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/0bfb9afc844c9a88686f425111b917b6/80c33e3d91f94380-08/s1280x1920/61ac99de0e19ab2673f2c4e92b6a5f8296217a7a.jpg"
+        alt="Archive XVII — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · ii · 05.03.2026')">
     </div>
   </div>
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/ac2d2b008e4b34dbf66993688191344d/96d4949ab2f6cd9d-e1/s1280x1920/714266ddc52e466748ca414062e45c83bc580ab2.jpg"
-      alt="Archive 13 — iii"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XIII · iii')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XIII · iii</div>
-      <div class="trio-note">The street at speed — geometry between movement</div>
+
+  <div class="g-row c4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/8f6c8f4bd7f89c0ae163dd250dc56147/80c33e3d91f94380-dd/s1280x1920/e6bc9f7cf645f7ea2108aae0a9806d5ff8acccf7.jpg"
+        alt="Archive XVII — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · iii · 05.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/e7520ebefd641ae6d8114d64274aff58/80c33e3d91f94380-06/s1280x1920/54f646a26d256a4671160b531bf6b48b47802de5.jpg"
+        alt="Archive XVII — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · iv · 05.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/a6a1bf6e30cce1eceef2aef508a3e2f3/80c33e3d91f94380-39/s1280x1920/9ce84bad766afce4f58ca0e894db1fb1ee31580d.jpg"
+        alt="Archive XVII — v" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · v · 05.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/bde08058269e0def40dde932c36eec9d/80c33e3d91f94380-43/s1280x1920/89abd7a3d305c38f641ccdfe8a2070f5ff65bed9.jpg"
+        alt="Archive XVII — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · vi · 05.03.2026')">
     </div>
   </div>
-</div>
 
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XIII</div>
-    <h3 class="cap-title">Perception<br>at Speed</h3>
-    <div class="cap-date">NCBS to ICTS · 26.02.2026</div>
-  </div>
-  <div class="cap-vision">
-    Motion blur at the edges of the frame, the centre briefly sharp. This is how the eye actually works on a moving bus — you fix on one point and everything else smears into peripheral suggestion. I am interested in <em>honest rendering of perception</em>, not the camera's mechanical freezing of it. The photographs that interest me most are those where the blur is not a flaw to be corrected but information about the experience of seeing.
-  </div>
-</div>
-
-<!-- ── FULL BLEED: Archive 12 ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XII · ICTS to NCBS · 25.02.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="full-bleed reveal">
-  <img class="clickable"
-    src="https://64.media.tumblr.com/0dd1f2af45844f2eefe853f2c0067f01/57138e9d2f5e2933-5d/s1280x1920/a31aed2635830872578feded638e8c31ffa38b94.jpg"
-    alt="Archive 12"
-    loading="lazy"
-    onclick="openLightbox(this.src, 'Archive XII · ICTS to NCBS · 25.02.2026')">
-</div>
-
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XII</div>
-    <h3 class="cap-title">The Route<br>Repeats</h3>
-    <div class="cap-date">ICTS to NCBS · 25.02.2026</div>
-  </div>
-  <div class="cap-vision">
-    Repetition is one of the things the bus ride teaches. The same buildings pass every day — I have photographed this stretch of road perhaps eighteen times now. But the light never repeats. What the series is really about, I think, is the impossibility of the same moment twice: the route is identical, the variations infinite.
-    <br><br>
-    Repetition is also how the naturalist works. The field notebook fills with the same specimen observed across seasons. The accumulation of similar observations is how patterns emerge. Each archive is one observation. The series is the study.
-  </div>
-</div>
-
-<!-- ── TRIO: Archive 15 ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XV · ICTS, Bengaluru · 01.03.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="trio-grid reveal">
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/bcd79be897ed40243173ffc39f812083/9c66933edd34ef97-e7/s1280x1920/236257d851a0dde072b866bdb0a9e4e6da14f574.jpg"
-      alt="Archive 15 — Same route, different light"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XV — Same route, different light')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XV · ii</div>
-      <div class="trio-note">Same route, different light — the route identical, the moment never repeated</div>
+  <div class="g-row c-5-5-3 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/664e29a4fd917fa34b117609368dd659/80c33e3d91f94380-41/s1280x1920/68a160c3a193ae14aba45be6be5107e3680f991a.jpg"
+        alt="Archive XVII — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · vii · 05.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/023c1c1e346d43767b072ab7f6d00885/80c33e3d91f94380-ad/s1280x1920/004258e92f7ba0e3abfa0946c543a78e325a0a3f.jpg"
+        alt="Archive XVII — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · viii · 05.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/aed49fc3b95a0501ca97d48e6764538c/80c33e3d91f94380-f7/s1280x1920/17245d5a2a57cb2c8aadd4a1ebd93fe0a5c24257.jpg"
+        alt="Archive XVII — ix" loading="lazy"
+        onclick="lb(this.src,'Archive XVII · ix · 05.03.2026')">
     </div>
   </div>
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/7b82246035d2ca471d75dde2908477e9/9c66933edd34ef97-12/s1280x1920/2f6dfceb3e8535c125f310ff994634ac45e95098.jpg"
-      alt="Archive 15 — iii"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XV · iii')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XV · iii</div>
-      <div class="trio-note">The figure incidental to the larger geometry of the scene</div>
+
+  <div class="g-full reveal" style="margin-top:var(--gap);">
+    <img src="https://64.media.tumblr.com/84794f24a15d00e719539f3783352b71/80c33e3d91f94380-22/s1280x1920/af719f6c74a77f6fd5dd8659192237d853d28b8f.jpg"
+      alt="Archive XVII — x" loading="lazy"
+      onclick="lb(this.src,'Archive XVII · x · 05.03.2026')">
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">A figure at the edge of the frame — partly seen, partly lost to motion blur. The grime on the glass is part of the image, part of the honesty of the method.</div>
+    <div class="cap-count">10 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XVI ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XVI</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>03.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/810036728804130816" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/a572a2850d971bd8d07784ae7819efff/17e9aa1e01c19ca5-e2/s1280x1920/82884cf23c1b6d0e64c411108b9e506b13105df6.jpg"
+      alt="Archive XVI — i" loading="lazy"
+      onclick="lb(this.src,'Archive XVI · i · NCBS to ICTS · 03.03.2026')">
+  </div>
+
+  <div class="g-row c3 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/af4b3b053fce63a2e80c13e7f3940cb6/17e9aa1e01c19ca5-c3/s1280x1920/75df5f8ce8f530729116ccb141e0673be7d570de.jpg"
+        alt="Archive XVI — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XVI · ii · 03.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/8a5ea2eab1186dd156a4868f2d192724/17e9aa1e01c19ca5-65/s1280x1920/51e3646fa737f42a3ea5e479ec4f956a561c57ac.jpg"
+        alt="Archive XVI — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XVI · iii · 03.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/a0de40eaa904e0d98cc0ce1933c48e7e/17e9aa1e01c19ca5-15/s1280x1920/dd7dc47b6592221b5d75280f23dbdc473bfac556.jpg"
+        alt="Archive XVI — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XVI · iv · 03.03.2026')">
     </div>
   </div>
-  <div class="trio-item">
-    <img class="clickable"
-      src="https://64.media.tumblr.com/01f3026bcf982be4215728df57dc4227/9c66933edd34ef97-a9/s1280x1920/081fb1281c61958beddab7c296362d4038997e1e.jpg"
-      alt="Archive 15 — iv"
-      loading="lazy"
-      onclick="openLightbox(this.src, 'Archive XV · iv')">
-    <div class="trio-overlay">
-      <div class="trio-arch">Archive XV · iv</div>
-      <div class="trio-note">Infrastructure — the city's skeleton made visible</div>
+
+  <div class="g-row c-6-4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/c1d229d34035a35224d7396ccd3ea05c/17e9aa1e01c19ca5-3e/s1280x1920/db02f59e14309c20f094035361d1583e7ebf7ab2.jpg"
+        alt="Archive XVI — v" loading="lazy"
+        onclick="lb(this.src,'Archive XVI · v · 03.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/7ba115f3015443e12739be6f2d5a11e9/17e9aa1e01c19ca5-48/s1280x1920/4bd61b73873a41479571d1971d79c10a5037f769.jpg"
+        alt="Archive XVI — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XVI · vi · 03.03.2026')">
     </div>
   </div>
-</div>
 
-<!-- ── FINAL FULL BLEED ── -->
-<div class="img-divider">
-  <div class="div-line"></div>
-  <div class="div-num">Archive XVIII · ICTS, Bengaluru · 05.03.2026</div>
-  <div class="div-line"></div>
-</div>
-
-<div class="full-bleed reveal">
-  <img class="clickable"
-    src="https://64.media.tumblr.com/986aa629b017fc236a9589139ae0227f/5cf84f4a80316c43-25/s1280x1920/1ef42a50514bb6f14d076a15fa59f7fc561fa35e.jpg"
-    alt="Archive 18 — ii"
-    loading="lazy"
-    onclick="openLightbox(this.src, 'Archive XVIII · ii · ICTS, Bengaluru · 05.03.2026')">
-</div>
-
-<div class="caption-block reveal">
-  <div class="cap-meta">
-    <div class="cap-archive">Archive XVIII</div>
-    <h3 class="cap-title">The City,<br>Unguarded</h3>
-    <div class="cap-date">ICTS, Bengaluru · 05.03.2026</div>
+  <div class="g-full reveal" style="margin-top:var(--gap);">
+    <img src="https://64.media.tumblr.com/7f77601391be42196a65779fe6bfa6df/17e9aa1e01c19ca5-4b/s1280x1920/3a2b320728fd099fd4ae685d7d2ef8babe60a032.jpg"
+      alt="Archive XVI — vii" loading="lazy"
+      onclick="lb(this.src,'Archive XVI · vii · 03.03.2026')">
   </div>
-  <div class="cap-vision">
-    This is the photograph I return to most often from the recent archives. Something about the distribution of figures in the frame — their spacing, the way they occupy the street without relating to each other — feels true to how cities actually work. The loneliness is structural, not personal. Everyone is simply going somewhere. The camera happened to be there.
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">In black and white, tree and building become equally grey. The photograph refuses to decide which matters more — Bengaluru, the Garden City, surviving.</div>
+    <div class="cap-count">7 photographs</div>
   </div>
+  <div class="arch-pad"></div>
 </div>
 
-<!-- ARCHIVE LIST -->
-<div class="archive-list">
-  <div class="al-inner">
-    <div class="al-head">Complete Archive — Tumblr</div>
-    <div class="al-grid">
-      <a href="https://studies-of-natural-history.tumblr.com/post/810269622539550721" target="_blank" class="al-item">
-        <span class="al-num">Archive XVIII</span>
-        <span class="al-title">ICTS, Bengaluru</span>
-        <span class="al-date">05.03.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/810269554758582272" target="_blank" class="al-item">
-        <span class="al-num">Archive XVII</span>
-        <span class="al-title">ICTS to NCBS</span>
-        <span class="al-date">05.03.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/810036728804130816" target="_blank" class="al-item">
-        <span class="al-num">Archive XVI</span>
-        <span class="al-title">NCBS to ICTS</span>
-        <span class="al-date">03.03.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/809901644743589888" target="_blank" class="al-item">
-        <span class="al-num">Archive XV</span>
-        <span class="al-title">ICTS, Bengaluru</span>
-        <span class="al-date">01.03.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/809901480658321408" target="_blank" class="al-item">
-        <span class="al-num">Archive XIV</span>
-        <span class="al-title">ICTS, Bengaluru</span>
-        <span class="al-date">01.03.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/809605391004680192" target="_blank" class="al-item">
-        <span class="al-num">Archive XIII</span>
-        <span class="al-title">NCBS to ICTS</span>
-        <span class="al-date">26.02.2026</span>
-      </a>
-      <a href="https://www.tumblr.com/studies-of-natural-history/809132759077601280/bus-ride-photographs-archive-7-the-series-of" target="_blank" class="al-item" style="border-color:rgba(201,168,76,.3);">
-        <span class="al-num" style="color:var(--gold);">Archive VII ★</span>
-        <span class="al-title">NCBS to ICTS · The Statement Archive</span>
-        <span class="al-date">21.02.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com/post/809531235446751232" target="_blank" class="al-item">
-        <span class="al-num">Archive XII</span>
-        <span class="al-title">ICTS to NCBS</span>
-        <span class="al-date">25.02.2026</span>
-      </a>
-      <a href="https://studies-of-natural-history.tumblr.com" target="_blank" class="al-item">
-        <span class="al-num">Archives I – XI</span>
-        <span class="al-title">Earlier works</span>
-        <span class="al-date">View on Tumblr ↗</span>
-      </a>
+
+<!-- ═══════ ARCHIVE XV ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XV</div>
+      <div class="arch-info">ICTS, Bengaluru<br>01.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/809901644743589888" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/10f6639172e96f95b6ccfeb3f3535c4a/9c66933edd34ef97-81/s1280x1920/d9175d08abd1fe6893e745c945f67b19524f4dad.jpg"
+      alt="Archive XV — The Crossing" loading="lazy"
+      onclick="lb(this.src,'Archive XV · The Crossing · ICTS · 01.03.2026')">
+  </div>
+
+  <div class="g-row c4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/bcd79be897ed40243173ffc39f812083/9c66933edd34ef97-e7/s1280x1920/236257d851a0dde072b866bdb0a9e4e6da14f574.jpg"
+        alt="Archive XV — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XV · ii · 01.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/7b82246035d2ca471d75dde2908477e9/9c66933edd34ef97-12/s1280x1920/2f6dfceb3e8535c125f310ff994634ac45e95098.jpg"
+        alt="Archive XV — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XV · iii · 01.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/01f3026bcf982be4215728df57dc4227/9c66933edd34ef97-a9/s1280x1920/081fb1281c61958beddab7c296362d4038997e1e.jpg"
+        alt="Archive XV — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XV · iv · 01.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/c4b8a50d04caa47574ba1c962dc3673d/9c66933edd34ef97-9e/s1280x1920/d500f55ec8f9e397d54e2da62c9a77937fde2298.jpg"
+        alt="Archive XV — v" loading="lazy"
+        onclick="lb(this.src,'Archive XV · v · 01.03.2026')">
     </div>
   </div>
+
+  <div class="g-row c-3-5-5 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/cc09af69e3a4df2b2d303cd8b1becefb/9c66933edd34ef97-48/s1280x1920/a48d32bcc3a460f89282de06ed10e87ff76ea638.jpg"
+        alt="Archive XV — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XV · vi · 01.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/c11b081b8b4a43bd5d7d2619aa1a9fad/9c66933edd34ef97-c9/s1280x1920/a30460aba3c353a86aa0fdcf488525b44a558a8e.jpg"
+        alt="Archive XV — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XV · vii · 01.03.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/47a90eb78e3b7e245a1d6935d3a1de01/9c66933edd34ef97-b6/s1280x1920/b43242eabeef02125a35b19ffd585eed6abe5fcb.jpg"
+        alt="Archive XV — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XV · viii · 01.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c2 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/c4a60a4bf86708a487ac2a989eac0694/9c66933edd34ef97-22/s1280x1920/89ab1d48125536793f9c788a15e6fcbcc01119dd.jpg"
+        alt="Archive XV — ix" loading="lazy"
+        onclick="lb(this.src,'Archive XV · ix · 01.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/6b6a410b6baa1edec02cc00a2d9046c7/9c66933edd34ef97-ed/s1280x1920/6f5239a88b00793aeb7d7d7a73ab04b514d80303.jpg"
+        alt="Archive XV — x" loading="lazy"
+        onclick="lb(this.src,'Archive XV · x · 01.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">The city provided the composition — vertical tree, horizontal road marking, diagonal movement. I merely decided when.</div>
+    <div class="cap-count">10 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
 </div>
+
+
+<!-- ═══════ ARCHIVE XIV ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XIV</div>
+      <div class="arch-info">ICTS, Bengaluru<br>01.03.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/809901480658321408" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c-6-4 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/3d5de73d089a3536496b9fc8b730e39d/e31cade39d4a2bb1-e1/s1280x1920/2f3a30d0a0d75294f95df0d6f239e635395301b5.jpg"
+        alt="Archive XIV — i" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · i · 01.03.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/9b2fe7a00b6b4ca6f468ca890ccbbabf/e31cade39d4a2bb1-bd/s1280x1920/325107768a69f3f1317045bbeb0765cc953103aa.jpg"
+        alt="Archive XIV — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · ii · 01.03.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c4 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/1bef07eade22544cd06e26ff63a0ac97/e31cade39d4a2bb1-f5/s1280x1920/8e610461d784524dcd4d898edc37aab208226ea8.jpg"
+        alt="Archive XIV — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · iii · 01.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/92688a9f88e1be0ab7c36c25e13cf341/e31cade39d4a2bb1-77/s1280x1920/be5bdd723b5aa5bccff1e0a0fd238594aeb254e9.jpg"
+        alt="Archive XIV — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · iv · 01.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/9e46f7a04eca395d5cbaff699fb7d67d/e31cade39d4a2bb1-34/s1280x1920/d2760d7138559737e32842ff434660af197f9e04.jpg"
+        alt="Archive XIV — v" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · v · 01.03.2026')">
+    </div>
+    <div class="g-cell h-sh">
+      <img src="https://64.media.tumblr.com/619924dfb960afb9a1fb3ac3ffb3dc68/e31cade39d4a2bb1-b7/s1280x1920/2d5f99da58afd02b2f29eefd79148492dbf5b385.jpg"
+        alt="Archive XIV — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XIV · vi · 01.03.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-count">6 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XIII ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XIII</div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>26.02.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/809605391004680192" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-row c3 reveal">
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/6a43037a46beb71288dfd181f2378af8/96d4949ab2f6cd9d-2f/s1280x1920/5d3a3da0b1dae9c9357c6d07f7bc31091d883d8c.jpg"
+        alt="Archive XIII — i" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · i · 26.02.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/76823d2eec9c55c6b342d7157a5242d5/96d4949ab2f6cd9d-56/s1280x1920/d5e311fd8f7e9c1a4679548dea8150d8d68dd840.jpg"
+        alt="Archive XIII — ii" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · ii · 26.02.2026')">
+    </div>
+    <div class="g-cell h-tall">
+      <img src="https://64.media.tumblr.com/ac2d2b008e4b34dbf66993688191344d/96d4949ab2f6cd9d-e1/s1280x1920/714266ddc52e466748ca414062e45c83bc580ab2.jpg"
+        alt="Archive XIII — iii" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · iii · 26.02.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c-5-5-3 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/0f9e07da234fa053116e8884455719df/96d4949ab2f6cd9d-f8/s1280x1920/53417a9d651a701ab5a08881ef37cdea48cf5de0.jpg"
+        alt="Archive XIII — iv" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · iv · 26.02.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/8d0a8effa3e0f41b37ba4ede3e0d7cc1/96d4949ab2f6cd9d-ff/s1280x1920/df8044785bbfab5955337d591a8ee1e5573b1f4b.jpg"
+        alt="Archive XIII — v" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · v · 26.02.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/247a633b3a3a9eb75e9ca17e17d9e0c8/96d4949ab2f6cd9d-e7/s1280x1920/9de434666f1d4a5c80b8a3250876bbff3367e6a0.jpg"
+        alt="Archive XIII — vi" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · vi · 26.02.2026')">
+    </div>
+  </div>
+
+  <div class="g-row c-3-5-5 reveal" style="margin-top:var(--gap);">
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/678eb2c04a06a3995d66684bb272dc3a/96d4949ab2f6cd9d-03/s1280x1920/f28d6a7e465752b86c37a4ef1b0c954c51678a0f.jpg"
+        alt="Archive XIII — vii" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · vii · 26.02.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/bf3f064b24ddeaf332f4e4eb9b7cdc86/96d4949ab2f6cd9d-25/s1280x1920/f937cb7ee7fcd360227aa76cfa61617baf351cba.jpg"
+        alt="Archive XIII — viii" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · viii · 26.02.2026')">
+    </div>
+    <div class="g-cell h-reg">
+      <img src="https://64.media.tumblr.com/22afd61723a760435abe522d75706e0b/96d4949ab2f6cd9d-c9/s1280x1920/50723034d37d41ced1f5aad998f519fde6993ed1.jpg"
+        alt="Archive XIII — ix" loading="lazy"
+        onclick="lb(this.src,'Archive XIII · ix · 26.02.2026')">
+    </div>
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Motion blur at the edges — honest rendering of perception, not the camera's mechanical freezing of it.</div>
+    <div class="cap-count">9 photographs</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE XII ═══════ -->
+<div class="archive-section">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num">Archive XII</div>
+      <div class="arch-info">ICTS to NCBS, Bengaluru<br>25.02.2026</div>
+    </div>
+    <a href="https://studies-of-natural-history.tumblr.com/post/809531235446751232" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/0dd1f2af45844f2eefe853f2c0067f01/57138e9d2f5e2933-5d/s1280x1920/a31aed2635830872578feded638e8c31ffa38b94.jpg"
+      alt="Archive XII" loading="lazy"
+      onclick="lb(this.src,'Archive XII · ICTS to NCBS · 25.02.2026')">
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">The same buildings pass every day. But the light never repeats. The route is identical, the variations infinite.</div>
+    <div class="cap-count">Full archive on Tumblr</div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ ARCHIVE VII — THE STATEMENT ARCHIVE ═══════ -->
+<div class="archive-section" style="border-top: 1px solid var(--w12);">
+  <div class="arch-header reveal">
+    <div class="arch-label">
+      <div class="arch-num" style="color:var(--w60);">Archive VII<span style="font-family:var(--f-body);font-size:1rem;font-style:italic;font-weight:400;color:var(--w30);margin-left:.8rem;">The Statement Archive</span></div>
+      <div class="arch-info">NCBS to ICTS, Bengaluru<br>21.02.2026</div>
+    </div>
+    <a href="https://www.tumblr.com/studies-of-natural-history/809132759077601280" target="_blank" class="arch-ext">View ↗</a>
+  </div>
+
+  <div class="g-full reveal">
+    <img src="https://64.media.tumblr.com/b1e5b6a3aafba67687910fa4f1bef021/df0d013a9bc1fd6f-7a/s2048x3072/341cfef55c1c12cf4fa6befb154beaf234464770.jpg"
+      alt="Archive VII — Layers beneath the ordinary" loading="lazy"
+      onclick="lb(this.src,'Archive VII · NCBS to ICTS · 21.02.2026 · The Statement Archive')">
+  </div>
+
+  <div class="arch-caption reveal">
+    <div class="cap-text">Archive VII was the point at which the series declared itself. The philosophy of the whole project became clear here: <em>beauty is not imported into the mundane. It is uncovered there.</em></div>
+  </div>
+  <div class="arch-pad"></div>
+</div>
+
+
+<!-- ═══════ COMPLETE INDEX ═══════ -->
+<div class="archive-index">
+  <div class="idx-wrap">
+    <div class="idx-head">Complete Archive — All 35 Editions</div>
+    <table class="idx-table">
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/811302196277837825','_blank')">
+        <td class="idx-num">XXXV</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">17.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/811213442126118912','_blank')">
+        <td class="idx-num">XXXIV</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">16.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com','_blank')">
+        <td class="idx-num">XXXIII – XXXI</td><td class="idx-title">Various routes, Bengaluru</td><td class="idx-date">Mar 2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810870594799370240','_blank')">
+        <td class="idx-num">XXX</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">12.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com','_blank')">
+        <td class="idx-num">XXIX – XXVIII</td><td class="idx-title">Various routes, Bengaluru</td><td class="idx-date">Mar 2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810514768404381696','_blank')">
+        <td class="idx-num">XXVII</td><td class="idx-title">ICTS to NCBS, Bengaluru</td><td class="idx-date">08.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810514726399377408','_blank')">
+        <td class="idx-num">XXVI</td><td class="idx-title">ICTS to NCBS, Bengaluru</td><td class="idx-date">08.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810496062792105984','_blank')">
+        <td class="idx-num">XXV</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">08.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com','_blank')">
+        <td class="idx-num">XXIV – XIX</td><td class="idx-title">Various routes, Bengaluru</td><td class="idx-date">Mar 2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810269622539550721','_blank')">
+        <td class="idx-num">XVIII</td><td class="idx-title">ICTS, Bengaluru</td><td class="idx-date">05.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810269554758582272','_blank')">
+        <td class="idx-num">XVII</td><td class="idx-title">ICTS to NCBS, Bengaluru</td><td class="idx-date">05.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/810036728804130816','_blank')">
+        <td class="idx-num">XVI</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">03.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/809901644743589888','_blank')">
+        <td class="idx-num">XV</td><td class="idx-title">ICTS, Bengaluru</td><td class="idx-date">01.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/809901480658321408','_blank')">
+        <td class="idx-num">XIV</td><td class="idx-title">ICTS, Bengaluru</td><td class="idx-date">01.03.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/809605391004680192','_blank')">
+        <td class="idx-num">XIII</td><td class="idx-title">NCBS to ICTS, Bengaluru</td><td class="idx-date">26.02.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com/post/809531235446751232','_blank')">
+        <td class="idx-num">XII</td><td class="idx-title">ICTS to NCBS, Bengaluru</td><td class="idx-date">25.02.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://www.tumblr.com/studies-of-natural-history/809132759077601280','_blank')" style="border-bottom:1px solid var(--w12);">
+        <td class="idx-num" style="color:var(--w60);">VII ★</td><td class="idx-title" style="color:var(--w60);">NCBS to ICTS — The Statement Archive</td><td class="idx-date">21.02.2026</td><td class="idx-arr">↗</td>
+      </tr>
+      <tr onclick="window.open('https://studies-of-natural-history.tumblr.com','_blank')">
+        <td class="idx-num">I – XI</td><td class="idx-title">Earlier works — view full archive</td><td class="idx-date">2026</td><td class="idx-arr">↗</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
 
 <!-- CTA -->
 <div class="cta-section reveal">
-  <div class="cta-label">Full Archive</div>
-  <h2 class="cta-h">All 18+ archives —<br><em>the complete field record</em></h2>
-  <a href="https://studies-of-natural-history.tumblr.com" target="_blank" class="cta-link">
-    Open Tumblr Archive ↗
-  </a>
+  <div class="cta-tag">Full Archive · 35 Editions · Ongoing</div>
+  <h2 class="cta-h">All 35 archives —<br><em>the complete field record</em></h2>
+  <a href="https://studies-of-natural-history.tumblr.com" target="_blank" class="cta-btn">Open Tumblr Archive ↗</a>
 </div>
 
 <!-- FOOTER -->
@@ -937,38 +1406,61 @@
 </footer>
 
 <!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <div class="lb-close">✕ Close</div>
-  <img id="lb-img" src="" alt="">
-  <div class="lb-caption" id="lb-caption"></div>
+<div class="lb" id="lb">
+  <span class="lb-x" onclick="lbClose()">✕ Close</span>
+  <span class="lb-arrow lb-prev" onclick="lbNav(-1)">←</span>
+  <img class="lb-img" id="lb-img" src="" alt="">
+  <div class="lb-cap" id="lb-cap"></div>
+  <span class="lb-arrow lb-next" onclick="lbNav(1)">→</span>
 </div>
 
 <script>
   // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
   // Lightbox
-  function openLightbox(src, caption) {
-    document.getElementById('lb-img').src = src;
-    document.getElementById('lb-caption').textContent = caption;
-    document.getElementById('lightbox').classList.add('open');
+  let imgs = [], cur = 0;
+
+  function lb(src, cap) {
+    imgs = Array.from(document.querySelectorAll('img[onclick]')).map(i => ({
+      src: i.src,
+      cap: (i.getAttribute('onclick').match(/'([^']+)',\s*'([^']+)'\)/) || [])[2] || ''
+    }));
+    cur = imgs.findIndex(i => i.src === src);
+    if (cur < 0) cur = 0;
+    lbShow();
+    document.getElementById('lb').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
+
+  function lbShow() {
+    document.getElementById('lb-img').src = imgs[cur].src;
+    document.getElementById('lb-cap').textContent = imgs[cur].cap;
+  }
+
+  function lbNav(d) {
+    cur = (cur + d + imgs.length) % imgs.length;
+    lbShow();
+    event.stopPropagation();
+  }
+
+  function lbClose() {
+    document.getElementById('lb').classList.remove('open');
     document.body.style.overflow = '';
   }
+
+  document.getElementById('lb').addEventListener('click', e => {
+    if (e.target === e.currentTarget || e.target.id === 'lb-img') lbClose();
+  });
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeLightbox();
+    if (!document.getElementById('lb').classList.contains('open')) return;
+    if (e.key === 'Escape') lbClose();
+    if (e.key === 'ArrowRight') lbNav(1);
+    if (e.key === 'ArrowLeft') lbNav(-1);
   });
 </script>
 </body>
